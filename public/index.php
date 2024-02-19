@@ -42,7 +42,10 @@ $router
         new Route('/events', 'events', 'GET', IndexController::class, 'events')
     )
     ->addRoute(
-        new Route('/products', 'login', 'GET', LoginController::class, 'login')
+        new Route('/login', 'login', 'GET', LoginController::class, 'login')
+    )
+    ->addRoute(
+        new Route('/models/login.php', 'traitement_login', 'POST', LoginController::class, 'traitement_login')
     );
 
 [
