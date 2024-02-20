@@ -1,7 +1,3 @@
-<?php $title = "LOGIN"; ?>
-
-<?php ob_start(); ?>
-
 <h1>REGISTER</h1>
 
 <form method="POST" action="/process_register">
@@ -19,7 +15,3 @@
     <br>
     <input type="submit" value="M'inscrire" name="valid_register">
 </form>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('./includes/layout.php') ?>
