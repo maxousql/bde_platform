@@ -19,19 +19,8 @@ class LoginController
 
     public function traitement_login()
     {
-        if (isset($_POST['valid'])) {
+        if (isset($_POST['valid_login'])) {
             extract($_POST);
-
-            $requete = $pdo->prepare("INSERT INTO utilisateur VALUES (:nom, :prenom, :email, :mdp)");
-            $requete->execute(
-                array(
-                    "nom" => $name,
-                    "prenom" => $firstname,
-                    "email" => $email,
-                    "mdp" => $password,
-                )
-            );
-            var_dump($response);
         }
     }
 }
