@@ -6,4 +6,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('./includes/layout.php') ?>
+<?php require('./templates/layout.php') ?>
