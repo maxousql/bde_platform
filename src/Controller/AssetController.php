@@ -6,13 +6,14 @@ class AssetController
 {
     private function load($file, $type)
     {
-        return __DIR__ . "../../public/$type/$file";
+        return __DIR__ . "/../../public/$type/$file";
     }
 
+    //fait avec Audrey HOSSEPIAN
     public function images($file): string
     {
         ob_start();
-        include $this->load($file["file"], "img");
+        echo file_get_contents($this->load($file["file"], "asset/img"));
         $content = ob_get_clean();
         return $content;
     }

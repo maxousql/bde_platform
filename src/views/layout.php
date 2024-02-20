@@ -9,7 +9,7 @@
     <style>
         <?php
 
-        include(__DIR__ . "../../../public/css/navbar.css");
+        // include(__DIR__ . "../../../public/css/navbar.css");
         include(__DIR__ . "../../../public/css/$style");
         ?>
     </style>
