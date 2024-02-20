@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>
         <?php echo $title ?>
     </title>
@@ -16,7 +17,7 @@
 </head>
 
 <body>
-    <h1>test</h1>
+    <?php include(__DIR__ . "/includes/navbar.php"); ?>
     <?php echo $content; ?>
 </body>
 
