@@ -22,8 +22,16 @@ class IndexController
         }
     }
 
-    public function contact(): string
+    public function events(): string
     {
-        return "Contact";
+        $viewPath = __DIR__ . '/../views/Events.php';
+
+        if (file_exists($viewPath)) {
+            $content = file_get_contents($viewPath);
+
+            return $content;
+        } else {
+            return "Erreur: Vue introuvable";
+        }
     }
 }
