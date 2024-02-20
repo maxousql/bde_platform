@@ -73,10 +73,6 @@ class RegisterModel
 
     public function verify_email()
     {
-        if (isset($_GET['token'])) {
 
-        } else {
-
-        }
     }
 }
