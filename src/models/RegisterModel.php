@@ -12,6 +12,7 @@ class RegisterModel
     {
         $mail = new PHPMailer(true);
 
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->SMTPAuth = true;
 
@@ -38,7 +39,6 @@ class RegisterModel
     public function processRegister($userData)
     {
         global $pdo;
-        var_dump($_POST);
         session_start();
         if (isset($_POST['valid_register'])) {
             extract($_POST);
@@ -71,8 +71,27 @@ class RegisterModel
         }
     }
 
-    public function verify_email()
+    public function process_verify_email($token)
     {
+        global $pdo;
 
+        $verify_email = "SELECT verify_email FROM utilisateur WHERE verify_token=:token LIMIT 1";
+        $verify_email_query_run = $pdo->prepare($verify_email);
+        $verify_email_query_run->bindParam(':token', $token);
+        $verify_email_query_run->execute();
+
+        $row = $verify_email_query_run->fetch($pdo::FETCH_ASSOC);
+
+        if ($row['verify_email']) {
+            echo "existe mais déjà valid";
+        } elseif ($row['verify_email'] === null) {
+            echo 'nexiste pas';
+        } else {
+            $valid_token = "UPDATE utilisateur SET verify_email = 1 WHERE verify_token=:token LIMIT 1";
+            $valid_token_run = $pdo->prepare($valid_token);
+            $valid_token_run->bindParam(':token', $token);
+            $valid_token_run->execute();
+            var_dump($valid_token_run->execute());
+        }
     }
 }

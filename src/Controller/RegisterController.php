@@ -8,7 +8,6 @@ class RegisterController
 {
     public function register(): string
     {
-
         $viewPath = __DIR__ . '/../views/includes/Register.php';
         $title = "Inscription";
         $style = "register.css";
@@ -34,11 +33,10 @@ class RegisterController
 
     public function verify_email($token)
     {
-        var_dump($token);
         $registerModel = new RegisterModel();
 
-        if (isset($token)) {
-            $registerModel->processRegister($token);
+        if (isset($token['token'])) {
+            $registerModel->process_verify_email($token['token']);
         } else {
             $_SESSION['status'] = "Not Allowed";
             header("Location /register");
