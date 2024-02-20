@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-class LoginController
+class EventsController
 {
-    public function login(): string
+    public function events(): string
     {
 
-        $viewPath = __DIR__ . '/../views/includes/Login.php';
-        $title = "Connexion";
-        $style = "login.css";
+        $viewPath = __DIR__ . '/../views/includes/Events.php';
+        $title = "Events";
+        $style = "events.css";
 
         if (file_exists($viewPath)) {
             ob_start();
@@ -18,13 +18,6 @@ class LoginController
             return ob_get_clean();
         } else {
             return "Erreur: Vue introuvable";
-        }
-    }
-
-    public function traitement_login()
-    {
-        if (isset($_POST['valid_login'])) {
-            extract($_POST);
         }
     }
 }

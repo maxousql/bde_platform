@@ -2,9 +2,11 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Controller\EventsController;
 use App\Controller\IndexController;
 use App\Controller\LoginController;
 use App\Controller\RegisterController;
+use App\Controller\AssetController;
 use App\Routing\Exception\RouteNotFoundException;
 use App\Routing\Route;
 use App\Routing\Router;
@@ -38,10 +40,13 @@ $router = new Router();
 
 $router
     ->addRoute(
+        new Route('/img/{file}', 'images', 'GET', AssetController::class, 'images')
+    )
+    ->addRoute(
         new Route('/', 'home', 'GET', IndexController::class, 'home')
     )
     ->addRoute(
-        new Route('/events', 'events', 'GET', IndexController::class, 'events')
+        new Route('/events', 'events', 'GET', EventsController::class, 'events')
     )
     ->addRoute(
         new Route('/login', 'login', 'GET', LoginController::class, 'login')
@@ -56,7 +61,7 @@ $router
         new Route('/process_register', 'process_register', 'POST', RegisterController::class, 'process_register')
     )
     ->addRoute(
-        new Route('/verify-email', 'process_register', 'GET', RegisterController::class, 'verify_email')
+        new Route('/verify-email/{token}', 'verify_email', 'GET', RegisterController::class, 'verify_email')
     );
 
 [
