@@ -10,14 +10,14 @@
     <style>
         <?php
 
-        include(__DIR__ . "../../../public/css/navbar.css");
+        // include(__DIR__ . "../../../public/css/navbar.css");
         include(__DIR__ . "../../../public/css/$style");
         ?>
     </style>
 </head>
 
 <body>
-    <h1>test</h1>
+    <?php include(__DIR__ . "/includes/navbar.php"); ?>
     <?php echo $content; ?>
 </body>
 
