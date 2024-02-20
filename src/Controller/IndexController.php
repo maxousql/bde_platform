@@ -10,6 +10,7 @@ class IndexController
         $viewPath = __DIR__ . '/../views/includes/Home.php';
         $title = "Accueil";
         $style = "home.css";
+        $currentPage = "home";
 
         if (file_exists($viewPath)) {
             ob_start();

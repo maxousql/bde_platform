@@ -26,12 +26,12 @@
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                            aria-current="page">Accueil</a>
-                        <a href="/events"
-                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Évenements</a>
                         <a href="#"
-                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Ajouter/Modifier
+                            class="<?= $currentPage === 'home' ? 'bg-gray-900 text-white"' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?>  rounded-md px-3 py-2 text-sm font-medium">Accueil</a>
+                        <a href="/events"
+                            class="<?= $currentPage === 'events' ? 'bg-gray-900 text-white"' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Évenements</a>
+                        <a href="#"
+                            class="<?= $currentPage === 'test' ? 'bg-gray-900 text-white"' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Ajouter/Modifier
                             un évenement</a>
                     </div>
                 </div>
