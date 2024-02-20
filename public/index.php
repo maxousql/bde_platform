@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\IndexController;
 use App\Controller\LoginController;
+use App\Controller\RegisterController;
 use App\Routing\Exception\RouteNotFoundException;
 use App\Routing\Route;
 use App\Routing\Router;
@@ -27,6 +28,7 @@ if ($dbConfig === false) {
 try {
     $dsn = "mysql:host=$host;port=$port;dbname=$dbName;charset=$charset";
     $pdo = new PDO($dsn, $user, $password);
+    $GLOBALS['pdo'] = $pdo;
 } catch (PDOException $e) {
     echo "Erreur lors de la connexion à la base de données" . $e->getMessage();
     exit;
@@ -46,6 +48,15 @@ $router
     )
     ->addRoute(
         new Route('/models/login.php', 'traitement_login', 'POST', LoginController::class, 'traitement_login')
+    )
+    ->addRoute(
+        new Route('/register', 'register', 'GET', RegisterController::class, 'register')
+    )
+    ->addRoute(
+        new Route('/process_register', 'process_register', 'POST', RegisterController::class, 'process_register')
+    )
+    ->addRoute(
+        new Route('/verify-email', 'process_register', 'GET', RegisterController::class, 'verify_email')
     );
 
 [
@@ -58,7 +69,7 @@ try {
 } catch (RouteNotFoundException) {
     http_response_code(404);
     echo "Page non trouvée";
-} catch (Exception) {
+} catch (Exception $e) {
     http_response_code(500);
-    echo "Erreur interne, veuillez contacter l'administrateur";
+    echo "Erreur interne, veuillez contacter l'administrateur" . $e->getMessage();
 }
