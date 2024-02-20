@@ -6,32 +6,28 @@ class IndexController
 {
     public function home(): string
     {
-        // Chemin vers le fichier HTML de la vue
-        $viewPath = __DIR__ . '/../views/Home.php';
 
-        // Vérification de l'existence du fichier
+        $viewPath = __DIR__ . '/../views/includes/Home.php';
+        $title = "Accueil";
+        $style = "home.css";
+
         if (file_exists($viewPath)) {
-            // Lecture du contenu du fichier
+            ob_start();
             $content = file_get_contents($viewPath);
-
-            // Retourne le contenu du fichier HTML
-            return $content;
+            include __DIR__ . '/../views/layout.php';
+            return ob_get_clean();
         } else {
-            // Si le fichier n'existe pas, retourne un message d'erreur
             return "Erreur: Vue introuvable";
         }
     }
 
-    public function events(): string
+    public function events()
     {
-        $viewPath = __DIR__ . '/../views/Events.php';
+        $title = "Events";
+        ob_start();
+        include '../views/Events.php';
+        $content = ob_get_clean();
 
-        if (file_exists($viewPath)) {
-            $content = file_get_contents($viewPath);
-
-            return $content;
-        } else {
-            return "Erreur: Vue introuvable";
-        }
+        include '../views/includes/layout.php';
     }
 }

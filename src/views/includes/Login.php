@@ -1,7 +1,3 @@
-<?php $title = "LOGIN"; ?>
-
-<?php ob_start(); ?>
-
 <h1>LOGIN</h1>
 
 <form method="POST" action="../models/login.php">
@@ -13,7 +9,3 @@
     <br>
     <input type="submit" value="Connexion" name="valid_login">
 </form>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('./includes/layout.php') ?>

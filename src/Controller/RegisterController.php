@@ -8,12 +8,16 @@ class RegisterController
 {
     public function register(): string
     {
-        $viewPath = __DIR__ . '/../views/Register.php';
+
+        $viewPath = __DIR__ . '/../views/includes/Register.php';
+        $title = "Inscription";
+        $style = "register.css";
 
         if (file_exists($viewPath)) {
+            ob_start();
             $content = file_get_contents($viewPath);
-
-            return $content;
+            include __DIR__ . '/../views/layout.php';
+            return ob_get_clean();
         } else {
             return "Erreur: Vue introuvable";
         }
@@ -28,12 +32,12 @@ class RegisterController
         $registerModel->processRegister($userData);
     }
 
-    public function verify_email()
+    public function verify_email($token)
     {
+        var_dump($token);
         $registerModel = new RegisterModel();
 
-        if (isset($_GET['token'])) {
-            $token = $_GET['token'];
+        if (isset($token)) {
             $registerModel->processRegister($token);
         } else {
             $_SESSION['status'] = "Not Allowed";
