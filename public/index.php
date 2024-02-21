@@ -87,6 +87,9 @@ $router
     )
     ->addRoute(
         new Route('/reservation', 'process_reservation', 'GET', ReservationController::class, 'process_reservation')
+    )
+    ->addRoute(
+        new Route('/profile', 'profile', 'GET', ProfileController::class, 'profile')
     );
 
 [
