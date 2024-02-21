@@ -38,12 +38,14 @@ foreach ($data as $row) {
                 </div>
                 <div class="flex items-baseline mt-4 mb-6">
                     <div class="space-x-2 flex text-sm font-bold">
-                        <p class="text-sm text-slate-500">' . $row["adresse"] . '</p>
+                        <p class="text-sm text-slate-500">' . $row["adresse"] . ' le '. $row["date_event"].'</p>
                     </div>
                 </div>
-                <a class="a_event_reserver" href="reservation?id_event='.$row["id_event"].'">Réserver</a>
-                <a class="a_event_reserver" href="reservation?id_event='.$row["id_event"].'">Favoris</a>
-
+                <div>
+                    <a class="a_event_reserver" href="reservation?id_event='.$row["id_event"].'">Réserver</a>
+                    <a class="a_event_reserver" href="reservation?id_event='.$row["id_event"].'">Favoris</a>
+                    <p class="text-sm text-slate-500">nombre de participant: '.$row["nombre_de_participants"].'</p>
+                </div>
             </form>
             </div>';
 }
