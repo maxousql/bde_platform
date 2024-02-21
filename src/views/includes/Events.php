@@ -10,16 +10,10 @@
 <body>
     
     <?php
-    $DB_HOST = '127.0.0.1';
-    $DB_NAME = 'bde_platform';
-    $DB_CHARSET = 'utf8mb4';
-    $DB_USER = 'root';
-    $DB_PASSWORD = 'root';
+    global $pdo;
 
-    $dsn = "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=$DB_CHARSET";
-    $db = new PDO($dsn, $DB_USER, $DB_PASSWORD);
 
-$data = $db->query("SELECT * FROM event 
+$data = $pdo->query("SELECT * FROM event 
 INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie;")->fetchAll();
 
 foreach ($data as $row) {
@@ -47,7 +41,8 @@ foreach ($data as $row) {
                         <p class="text-sm text-slate-500">' . $row["adresse"] . '</p>
                     </div>
                 </div>
-                <a class="a_event_reserver" href="reservation.php?id_event='.$row["id_event"].'">Réserver</a>
+                <a class="a_event_reserver" href="reservation?id_event='.$row["id_event"].'">Réserver</a>
+                <a class="a_event_reserver" href="reservation?id_event='.$row["id_event"].'">Favoris</a>
 
             </form>
             </div>';

@@ -14,8 +14,9 @@
 }
 
 .ajustement_event {
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 200px;
+  margin-right: 200px;
   margin-top: 8px;
   margin-bottom: 8px;
+  border-radius: 10px;
 }
