@@ -1,2 +1,2 @@
 <h1>EVENTS</h1>
-<?= 'test' ?>
+<?= var_dump($_SESSION) ?>

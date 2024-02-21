@@ -6,7 +6,7 @@ use App\Models\RegisterModel;
 
 class RegisterController
 {
-    public function register(): string
+    public function register()
     {
         $viewPath = __DIR__ . '/../views/includes/Register.php';
         $title = "Inscription";
@@ -14,9 +14,9 @@ class RegisterController
 
         if (file_exists($viewPath)) {
             ob_start();
-            $content = file_get_contents($viewPath);
+            include $viewPath;
+            $content = ob_get_clean();
             include __DIR__ . '/../views/layout.php';
-            return ob_get_clean();
         } else {
             return "Erreur: Vue introuvable";
         }

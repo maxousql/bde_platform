@@ -6,7 +6,7 @@ use App\Models\LoginModel;
 
 class LoginController
 {
-    public function login(): string
+    public function login()
     {
 
         $viewPath = __DIR__ . '/../views/includes/Login.php';
@@ -16,9 +16,9 @@ class LoginController
 
         if (file_exists($viewPath)) {
             ob_start();
-            $content = file_get_contents($viewPath);
+            include $viewPath;
+            $content = ob_get_clean();
             include __DIR__ . '/../views/layout.php';
-            return ob_get_clean();
         } else {
             return "Erreur: Vue introuvable";
         }

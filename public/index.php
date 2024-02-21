@@ -2,9 +2,11 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Controller\AdminUserController;
 use App\Controller\EventsController;
 use App\Controller\IndexController;
 use App\Controller\LoginController;
+use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
 use App\Routing\Exception\RouteNotFoundException;
@@ -64,7 +66,13 @@ $router
         new Route('/process_login', 'process_login', 'POST', LoginController::class, 'process_login')
     )
     ->addRoute(
+        new Route('/process_logout', 'process_logout', 'GET', LogoutController::class, 'process_logout')
+    )
+    ->addRoute(
         new Route('/verify-email/{token}', 'verify_email', 'GET', RegisterController::class, 'verify_email')
+    )
+    ->addRoute(
+        new Route('/admin_user', 'admin_user', 'GET', AdminUserController::class, 'admin_user')
     );
 
 [
