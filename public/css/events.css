@@ -4,6 +4,13 @@
 
 .a_event_reserver {
   background-color: #fac042;
+  font-size: 23px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  color: white;
 }
 
 .ajustement_event {
