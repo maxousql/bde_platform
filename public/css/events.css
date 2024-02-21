@@ -5,8 +5,8 @@
 .a_event_reserver {
   background-color: #fac042;
   font-size: 23px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 10px;
@@ -16,7 +16,12 @@
 .ajustement_event {
   margin-left: 200px;
   margin-right: 200px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.256);
+}
+
+.text_nombre_participant {
+  margin-top: 5px;
 }
