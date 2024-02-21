@@ -19,6 +19,7 @@ class LoginModel
 
             if ($row) {
                 if (password_verify($password, $row['mdp'])) {
+                    $_SESSION['id_user'] = $row['id_utilisateur'];
                     $_SESSION['role'] = $row['id_role'];
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['name'] = $row['nom'];
