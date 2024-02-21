@@ -6,7 +6,6 @@ class EventsController
 {
     public function events(): string
     {
-
         $viewPath = __DIR__ . '/../views/includes/Events.php';
         $title = "Events";
         $style = "events.css";

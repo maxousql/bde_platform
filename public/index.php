@@ -43,7 +43,10 @@ $router
         new Route('/img/{file}', 'images', 'GET', AssetController::class, 'images')
     )
     ->addRoute(
-        new Route('/', 'home', 'GET', IndexController::class, 'home')
+        new Route('/', 'default', 'GET', IndexController::class, 'home')
+    )
+    ->addRoute(
+        new Route('/home', 'home', 'GET', IndexController::class, 'home')
     )
     ->addRoute(
         new Route('/events', 'events', 'GET', EventsController::class, 'events')
