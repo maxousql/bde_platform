@@ -77,6 +77,15 @@ $router
         new Route('/admin_user', 'admin_user', 'GET', AdminUserController::class, 'admin_user')
     )
     ->addRoute(
+        new Route('/edit_user', 'edit_user', 'GET', AdminUserController::class, 'edit_user')
+    )
+    ->addRoute(
+        new Route('/process_editUser', 'processEditUser', 'GET', AdminUserController::class, 'processEditUser')
+    )
+    ->addRoute(
+        new Route('/processUpdateUser', 'processUpdateUser', 'GET', AdminUserController::class, 'processUpdateUser')
+    )
+    ->addRoute(
         new Route('/reservation', 'process_reservation', 'GET', ReservationController::class, 'process_reservation')
     );
 
@@ -88,6 +97,7 @@ $router
 
 $parts = explode("?", $uri);
 $uri = $parts[0];
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
