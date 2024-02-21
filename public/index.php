@@ -55,13 +55,13 @@ $router
         new Route('/login', 'login', 'GET', LoginController::class, 'login')
     )
     ->addRoute(
-        new Route('/models/login.php', 'traitement_login', 'POST', LoginController::class, 'traitement_login')
-    )
-    ->addRoute(
         new Route('/register', 'register', 'GET', RegisterController::class, 'register')
     )
     ->addRoute(
         new Route('/process_register', 'process_register', 'POST', RegisterController::class, 'process_register')
+    )
+    ->addRoute(
+        new Route('/process_login', 'process_login', 'POST', LoginController::class, 'process_login')
     )
     ->addRoute(
         new Route('/verify-email/{token}', 'verify_email', 'GET', RegisterController::class, 'verify_email')
@@ -71,6 +71,14 @@ $router
     'REQUEST_URI' => $uri,
     'REQUEST_METHOD' => $httpMethod
 ] = $_SERVER;
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['role'])) {
+    $_SESSION['role'] = 0;
+}
 
 try {
     echo $router->execute($uri, $httpMethod);

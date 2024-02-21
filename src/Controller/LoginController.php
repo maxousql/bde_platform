@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Models\LoginModel;
+
 class LoginController
 {
     public function login(): string
@@ -10,6 +12,7 @@ class LoginController
         $viewPath = __DIR__ . '/../views/includes/Login.php';
         $title = "Connexion";
         $style = "login.css";
+        $currentPage = "login";
 
         if (file_exists($viewPath)) {
             ob_start();
@@ -21,10 +24,12 @@ class LoginController
         }
     }
 
-    public function traitement_login()
+    public function process_login()
     {
-        if (isset($_POST['valid_login'])) {
-            extract($_POST);
-        }
+        $loginModel = new LoginModel();
+
+        $userData = $_POST;
+
+        $loginModel->processLogin($userData);
     }
 }
