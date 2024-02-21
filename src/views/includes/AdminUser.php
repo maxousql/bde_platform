@@ -39,9 +39,11 @@
             <?php
             global $pdo;
 
-            $getAllUsers_query = 'SELECT * FROM utilisateur INNER JOIN role ON utilisateur.id_role = role.id_role
+            $getAllUsers_query = "SELECT * FROM utilisateur INNER JOIN role ON utilisateur.id_role = role.id_role
             INNER JOIN ecole ON utilisateur.id_ecole = ecole.id_ecole
-            INNER JOIN promotion ON utilisateur.id_promotion = promotion.id_promotion ORDER BY utilisateur.nom ASC';
+            INNER JOIN promotion ON utilisateur.id_promotion = promotion.id_promotion 
+            ORDER BY utilisateur.nom ASC 
+            LIMIT $start_page, $rows_per_page";
             $getAllUsers_query_run = $pdo->prepare($getAllUsers_query);
             $getAllUsers_query_run->execute();
             $data = $getAllUsers_query_run->fetchAll();
@@ -74,3 +76,35 @@
         </tbody>
     </table>
 </div>
+<nav aria-label="Page navigation example">
+    <ul class="inline-flex -space-x-px text-sm">
+        <li>
+            <a href="#"
+                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+        </li>
+        <li>
+            <a href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+        </li>
+        <li>
+            <a href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+        </li>
+        <li>
+            <a href="#" aria-current="page"
+                class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+        </li>
+        <li>
+            <a href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+        </li>
+        <li>
+            <a href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+        </li>
+        <li>
+            <a href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+        </li>
+    </ul>
+</nav>
