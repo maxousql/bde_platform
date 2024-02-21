@@ -21,42 +21,53 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
-                    <img class="h-8 w-auto" src="img/logobeede.png" alt="Your Company">
+                    <img class="h-8 w-auto" src="img/logobeede.png" alt="BEEDE">
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                            aria-current="page">Accueil</a>
+                        <a href="/"
+                            class="<?= $currentPage === 'home' ? 'bg-gray-900 text-white block rounded-md px-3 py-2  font-medium"' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?>  rounded-md px-3 py-2 text-sm font-medium">Accueil</a>
                         <a href="/events"
-                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Évenements</a>
-                        <a href="#"
-                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Ajouter/Modifier
-                            un évenement</a>
+                            class="<?= $currentPage === 'events' ? 'bg-gray-900 text-white block rounded-md px-3 py-2  font-medium"' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Évenements</a>
+                        <?php
+                        if ($_SESSION['role'] === 2) {
+                            echo '<a href="/admin_user" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion utilisateurs</a>';
+                            echo '<a href="/admin_events" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
+                        } elseif ($_SESSION['role'] === 3) {
+                            echo '<a href="/admin_events" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button type="button"
+                <?php
+                if (isset($_SESSION['email'])) {
+                    echo '<a href="/reservation"
                     class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">View notifications</span>
                     <img class="h-6 w-6 color:white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" aria-hidden="true" src="img/logobillet.png" alt="">
-                </button>
+                    </a>';
+                }
+                ?>
 
                 <!-- Profile dropdown -->
                 <div class="relative ml-3">
-                    <div>
-                        <button type="button"
-                            class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+
+                    <?php
+                    if (isset($_SESSION['email'])) {
+                        echo '<div>
+                        <a class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">Open user menu</span>
                             <img class="h-8 w-8 rounded-full" src="img/logouser.jpg" alt="">
-                        </button>
-                    </div>
-                    <div class="transition ease-out duration-100 opacity-0 scale-95     absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        </a>
+                    </div>';
+                        echo '<div class="transition ease-out duration-100 opacity-0 scale-95     absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                         role="menu" id="profile-menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                         tabindex="-1">
                         <!-- Active: "bg-gray-100", Not Active: "" -->
@@ -64,9 +75,20 @@
                             id="user-menu-item-0">Votre profil</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-1">Vos évenements</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                        <a href="/process_logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-2">Se déconnecter</a>
-                    </div>
+                    </div>';
+                    } else {
+                        echo '<div>
+                        <a href="/login" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                             aria-expanded="false" aria-haspopup="true">
+                            <span class="absolute -inset-1.5"></span>
+                            <img class="h-8 w-8 rounded-full" src="img/logouser.jpg" alt="">
+                        </a>
+                    </div>';
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>

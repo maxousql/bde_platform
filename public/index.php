@@ -2,10 +2,12 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Controller\AdminUserController;
 use App\Controller\EventsController;
 use App\Controller\IndexController;
 use App\Controller\ProfileController;
 use App\Controller\LoginController;
+use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
 use App\Routing\Exception\RouteNotFoundException;
@@ -44,7 +46,10 @@ $router
         new Route('/img/{file}', 'images', 'GET', AssetController::class, 'images')
     )
     ->addRoute(
-        new Route('/', 'home', 'GET', IndexController::class, 'home')
+        new Route('/', 'default', 'GET', IndexController::class, 'home')
+    )
+    ->addRoute(
+        new Route('/home', 'home', 'GET', IndexController::class, 'home')
     )
     ->addRoute(
         new Route('/events', 'events', 'GET', EventsController::class, 'events')
@@ -53,22 +58,36 @@ $router
         new Route('/login', 'login', 'GET', LoginController::class, 'login')
     )
     ->addRoute(
-        new Route('/models/login.php', 'traitement_login', 'POST', LoginController::class, 'traitement_login')
-    )
-    ->addRoute(
         new Route('/register', 'register', 'GET', RegisterController::class, 'register')
     )
     ->addRoute(
         new Route('/process_register', 'process_register', 'POST', RegisterController::class, 'process_register')
     )
     ->addRoute(
+        new Route('/process_login', 'process_login', 'POST', LoginController::class, 'process_login')
+    )
+    ->addRoute(
+        new Route('/process_logout', 'process_logout', 'GET', LogoutController::class, 'process_logout')
+    )
+    ->addRoute(
         new Route('/verify-email/{token}', 'verify_email', 'GET', RegisterController::class, 'verify_email')
+    )
+    ->addRoute(
+        new Route('/admin_user', 'admin_user', 'GET', AdminUserController::class, 'admin_user')
     );
 
 [
     'REQUEST_URI' => $uri,
     'REQUEST_METHOD' => $httpMethod
 ] = $_SERVER;
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['role'])) {
+    $_SESSION['role'] = 0;
+}
 
 try {
     echo $router->execute($uri, $httpMethod);

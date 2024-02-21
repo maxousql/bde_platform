@@ -4,18 +4,19 @@ namespace App\Controller;
 
 class IndexController
 {
-    public function home(): string
+    public function home()
     {
 
         $viewPath = __DIR__ . '/../views/includes/Home.php';
         $title = "Accueil";
         $style = "home.css";
+        $currentPage = "home";
 
         if (file_exists($viewPath)) {
             ob_start();
-            $content = file_get_contents($viewPath);
+            include $viewPath;
+            $content = ob_get_clean();
             include __DIR__ . '/../views/layout.php';
-            return ob_get_clean();
         } else {
             return "Erreur: Vue introuvable";
         }
