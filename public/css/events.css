@@ -1,0 +1,22 @@
+.a_event_heart {
+  color: #fac042;
+}
+
+.a_event_reserver {
+  background-color: #fac042;
+  font-size: 23px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+.ajustement_event {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+}

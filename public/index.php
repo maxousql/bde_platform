@@ -5,10 +5,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use App\Controller\AdminUserController;
 use App\Controller\EventsController;
 use App\Controller\IndexController;
+use App\Controller\ProfileController;
 use App\Controller\LoginController;
 use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
+use App\Controller\ReservationController;
 use App\Routing\Exception\RouteNotFoundException;
 use App\Routing\Route;
 use App\Routing\Router;
@@ -73,13 +75,19 @@ $router
     )
     ->addRoute(
         new Route('/admin_user', 'admin_user', 'GET', AdminUserController::class, 'admin_user')
+    )
+    ->addRoute(
+        new Route('/reservation', 'process_reservation', 'GET', ReservationController::class, 'process_reservation')
     );
 
 [
     'REQUEST_URI' => $uri,
+    //'PATH_INFO' => $uri,
     'REQUEST_METHOD' => $httpMethod
 ] = $_SERVER;
 
+$parts = explode("?", $uri);
+$uri = $parts[0];
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
