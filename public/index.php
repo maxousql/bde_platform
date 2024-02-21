@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\EventsController;
 use App\Controller\IndexController;
+use App\Controller\ProfileController;
 use App\Controller\LoginController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
