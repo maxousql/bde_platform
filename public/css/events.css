@@ -25,3 +25,24 @@
 .text_nombre_participant {
   margin-top: 5px;
 }
+/**mode tablette**/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .ajustement_event {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .a_event_reserver {
+    font-size: 19px;
+  }
+}
+
+/**mode telephone**/
+@media screen and (max-width: 768px) {
+  .ajustement_event {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .a_event_reserver {
+    font-size: 15px;
+  }
+}
