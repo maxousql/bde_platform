@@ -541,17 +541,18 @@ footer ul li h3 {
 
 #concept h2::before {
   content: "";
-  height: 200px;
-  width: 200px;
+  height: 10vw;
+  width: 10vw;
   position: absolute;
   z-index: -1;
-  top: -90px;
-  left: 15px;
+  top: -7.5vw;
+  left: 3.5vw;
   background-image: url(../img/logobeede.png);
   background-size: cover;
   background-repeat: no-repeat;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2);
 }
+
 #concept article {
   padding: 0 20px 20px 45px;
 }
