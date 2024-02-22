@@ -73,7 +73,7 @@
                         <!-- Active: "bg-gray-100", Not Active: "" -->
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-0">Votre profil</a>
-                        <a href="/mesreservation" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                        <a href="/mesfavoris" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-1">Vos favoris</a>
                         <a href="/process_logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-2 confirmLogout">Se déconnecter</a>
