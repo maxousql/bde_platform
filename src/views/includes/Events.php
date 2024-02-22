@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+<main>
     <form action="" method="GET">
         <div class="search_bar">
             <input type="text" name="search" placeholder="Rechercher un événement">
@@ -77,7 +77,7 @@
                 </div>
                 <div>
                     ' . $btnReservationFavoris . '
-                    <p class="text-sm font-medium text-slate-400 text_nombre_participant">nombre de participant: ' . $row["nombre_de_participants"] . '</p>
+                    <p class="text-sm font-medium text-slate-400 text_nombre_participant"><img class="img_participant" src="img/utilisateur.png" alt=""> ' . $row["nombre_de_participants"] . '</p>
                 </div>
             </form>
             </div>';
@@ -92,6 +92,9 @@
         <a class='bouton_page_suiv' href='?search=$searchTerm&page=$nextPage'>Page suivante --></a>
      </div>";
     ?>
+    
+
+</main>
 </body>
 
 </html>

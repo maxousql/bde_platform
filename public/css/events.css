@@ -29,6 +29,11 @@
 
 .text_nombre_participant {
   margin-top: 20px;
+  display: flex;
+}
+.img_participant {
+  height: 18px;
+  margin-right: 5px;
 }
 
 .search_bar {
