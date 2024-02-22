@@ -76,7 +76,7 @@
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-1">Vos évenements</a>
                         <a href="/process_logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-2">Se déconnecter</a>
+                            id="user-menu-item-2 confirmLogout">Se déconnecter</a>
                     </div>';
                     } else {
                         echo '<div>
@@ -144,4 +144,20 @@
 
         })
     });
+
+    $('.confirmLogout').on('click', function (e) {
+        e.preventDefault();
+        var self = $(this);
+        swal({
+            title: "Voulez vous vous déconnecter ?",
+            text: "Une fois déconnecter, vous ne pourrez plus accéder à votre espace !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                location.href = self.attr('href');
+            }
+        })
+    })
 </script>
