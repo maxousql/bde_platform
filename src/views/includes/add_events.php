@@ -11,7 +11,7 @@
 
 <?php
 $DB_HOST = '127.0.0.1';
-$DB_NAME = 'bde_plateform';
+$DB_NAME = 'bde_platform';
 $DB_CHARSET = 'utf8mb4';
 $DB_USER = 'root';
 $DB_PASSWORD = '';
@@ -26,16 +26,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $adresse = $_POST['adresse'];
     $photo_Event = $_POST['photo_Event'];
     $id_categorie = $_POST['id_categorie'];
+    $date_evenement = $_POST['date_evenement'];
+    $heure_evenement = $_POST['heure_evenement'];
+    $prix = $_POST['prix'];
+
+    // Combinez la date et l'heure dans un format de date MySQL
+    $date_event = $date_evenement . ' ' . $heure_evenement;
 
 
     try {
-        $stmt = $db->prepare("INSERT INTO event (nom_event, description_event, adresse, photo_Event, id_categorie) VALUES (:nom_event, :description_event, :adresse, :photo_Event, :id_categorie)");
+        $stmt = $db->prepare("INSERT INTO event (nom_event, description_event, adresse, photo_Event, prix, date_event, id_categorie) VALUES (:nom_event, :description_event, :adresse, :photo_Event, :prix, :date_event, :id_categorie)");
 
         $stmt->bindParam(':nom_event', $nom_event);
         $stmt->bindParam(':description_event', $description_event);
         $stmt->bindParam(':adresse', $adresse);
         $stmt->bindParam(':photo_Event', $photo_Event);
         $stmt->bindParam(':id_categorie', $id_categorie);
+        $stmt->bindParam(':date_event', $date_event);
+        $stmt->bindParam(':prix', $prix);
 
         // Exécuter la requête
         $stmt->execute();
@@ -179,6 +187,11 @@ $data = $db->query("SELECT id_categorie, nom_categorie FROM categorie_event")->f
                         };
                     }
                 </script>
+                <div style="padding-top: 20px; ">
+                    <input type="number" step="0.01" name="prix" placeholder="Prix" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
+                    <input type="date" name="date_evenement" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
+                    <input type="time" name="heure_evenement" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
+                </div>
                 <select name="id_categorie" autocomplete="country-name" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4 resize-none w-full" style="border-top-width: 0px; margin-top: 16px;"">
                     <option value="" disabled selected>Choisissez catégorie</option>
                         <?php foreach ($data as $row) : ?>
