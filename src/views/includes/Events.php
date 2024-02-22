@@ -16,7 +16,7 @@
 global $pdo;
 
 // Définition du nombre d'événements par page
-$eventsPerPage = 10;
+$eventsPerPage = 5;
 
 // Récupération du numéro de page à partir de l'URL, par défaut à 1 si non spécifié
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
