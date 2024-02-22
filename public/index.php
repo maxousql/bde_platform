@@ -16,6 +16,7 @@ use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
 use App\Controller\ReservationController;
+use App\Controller\AddEventController;
 use App\Routing\Exception\RouteNotFoundException;
 use App\Routing\Route;
 use App\Routing\Router;
@@ -92,6 +93,12 @@ $router
     )
     ->addRoute(
         new Route('/reservation', 'process_reservation', 'GET', ReservationController::class, 'process_reservation')
+    )
+    ->addRoute(
+        new Route('/addevent', 'addevent', 'GET', AddEventController::class, 'addevent')
+    )
+    ->addRoute(
+        new Route('/process_addevent', 'process_addevent', 'POST', AddEventController::class, 'process_addevent')
     )
     ->addRoute(
         new Route('/favoris', 'process_favoris', 'GET', FavorisController::class, 'process_favoris')
