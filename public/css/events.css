@@ -14,6 +14,7 @@
 }
 
 .ajustement_event {
+  display: flex;
   margin-left: 200px;
   margin-right: 200px;
   margin-top: 15px;
@@ -21,9 +22,13 @@
   border-radius: 10px;
   border: 1px solid rgba(128, 128, 128, 0.256);
 }
+.ajustement_event .flex-auto {
+  flex: 1; /* Pour que le reste du contenu prenne tout l'espace disponible */
+  padding-left: 20px; /* Espacement entre l'image et le reste du contenu */
+}
 
 .text_nombre_participant {
-  margin-top: 5px;
+  margin-top: 20px;
 }
 /**mode tablette**/
 @media screen and (min-width: 768px) and (max-width: 1024px) {

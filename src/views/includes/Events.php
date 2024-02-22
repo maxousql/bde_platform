@@ -10,21 +10,22 @@
 <body>
     
     <?php
-    global $pdo;
-
+global $pdo;
 
 $data = $pdo->query("SELECT * FROM event 
 INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie;")->fetchAll();
 
-foreach ($data as $row) {
-
+foreach ($data as $row) { 
+    
+    $imageData = base64_encode($row['photo_Event']);
+    $src = 'data:image/jpeg;base64,'.$imageData;
 
     echo '<div class="ajustement_event">
             <div class="flex-none w-56 relative">
                 <img src="' . $src . '" alt="image"
-                    class="absolute inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
+                    class="inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
             </div>
-            <form class="flex-auto p-6" action="event.php" method="POST>
+            <form class="flex-auto p-6" action="event.php" method="POST">
                 <input type="hidden" name="id_billet" value="' . $row["id_event"] . '">
                 <div class="flex flex-wrap">
                     <h1 class="flex-auto font-medium text-slate-900">' . $row["nom_event"] . '</h1>
@@ -38,7 +39,8 @@ foreach ($data as $row) {
                 </div>
                 <div class="flex items-baseline mt-4 mb-6">
                     <div class="space-x-2 flex text-sm font-bold">
-                        <p class="text-sm text-slate-500">' . $row["adresse"] . ' le '. $row["date_event"].'</p>
+                        <p class="text-sm text-slate-500">Adresse :' . $row["adresse"] . '</p>
+                        <p class="text-sm text-slate-500">Date :'. $row["date_event"].'</p>
                     </div>
                 </div>
                 <div>
