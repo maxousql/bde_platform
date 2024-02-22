@@ -9,7 +9,7 @@ class ReservationModel
         global $pdo;
         if(isset($_GET['id_event'])) {  
             $id_event = $_GET['id_event'];
-            $id_utilisateur = 22;
+            $id_utilisateur = $_SESSION['id_user'];
 
             // D'abord, insérez le billet
             $stmt = $pdo->prepare("INSERT INTO billet (id_utilisateur, id_event) VALUES (:id_utilisateur, :id_event)");

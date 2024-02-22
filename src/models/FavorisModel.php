@@ -9,9 +9,7 @@ class FavorisModel
         global $pdo;
 if(isset($_GET['id_event'])) {  
     $id_event = $_GET['id_event'];
-    
-    
-    $id_utilisateur = 49;
+    $id_utilisateur = $_SESSION['id_user'];
 
     $stmt = $pdo->prepare("INSERT INTO favoris (id_utilisateur, id_event) VALUES (:id_utilisateur, :id_event)");
     $stmt->bindParam(':id_utilisateur', $id_utilisateur);
