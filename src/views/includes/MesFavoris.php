@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../event.css">
     <title>Document</title>
 </head>
 <body>
     
     <?php
 global $pdo;
+$user_id = $_SESSION['id_user'];
 
 $data = $pdo->query("SELECT * FROM event 
-INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie;")->fetchAll();
+INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie
+INNER JOIN favoris ON event.id_event = favoris.id_event
+WHERE id_utilisateur=$user_id;")->fetchAll();
 
 foreach ($data as $row) { 
     
