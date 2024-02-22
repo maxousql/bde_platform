@@ -27,5 +27,7 @@ class AddEventController
         $addeventModel = new AddEventModel();
 
         $addeventModel->processaddevent();
+
+        header("Location: /admin_events");
     }
 }

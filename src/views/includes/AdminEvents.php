@@ -5,7 +5,7 @@
             new DataTable('#example');
         });
     </script>
-    <a href="/add_event" class="bg-[#002D74] rounded-xl text-white py-2 p-2 mb-4 hover:scale-105 duration-300">Ajouter un événement</a>
+    <a href="/addevent" class="bg-[#002D74] rounded-xl text-white py-2 p-2 mb-4 hover:scale-105 duration-300">Ajouter un événement</a>
     <h2 class="mb-4"></h2>
     <table id="example" class="display" style="width:100%">
         <thead>
