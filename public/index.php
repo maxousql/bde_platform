@@ -18,6 +18,7 @@ use App\Controller\RegisterController;
 use App\Controller\AssetController;
 use App\Controller\ReservationController;
 use App\Controller\AddEventController;
+use App\Controller\AdminEventController;
 use App\Routing\Exception\RouteNotFoundException;
 use App\Routing\Route;
 use App\Routing\Router;
@@ -139,6 +140,9 @@ $router
     )
     ->addRoute(
         new Route('/process_deleteUser', 'process_deleteUser', 'GET', AdminUserController::class, 'process_deleteUser')
+    )
+    ->addRoute(
+        new Route('/delete_event', 'process_deleteEvent', 'GET', AdminEventController::class, 'process_deleteEvent')
     );
 
 [

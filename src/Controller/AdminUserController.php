@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Models\EditUserModel;
-use App\Models\UpdateEventModel;
 
 class AdminUserController
 {

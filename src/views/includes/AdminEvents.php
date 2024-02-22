@@ -17,6 +17,7 @@
                 <th class="px-4 py-2">Date</th>
                 <th class="px-4 py-2">Nombre de participants</th>
                 <th class="px-4 py-2"></th>
+                <th class="px-4 py-2"></th>
             </tr>
         </thead>
         <tbody>
@@ -53,6 +54,9 @@
                     </td>
                     <td class="border px-4 py-2">
                         <a href="edit_event?id_event=' . $row["id_event"] . '" name="editEvent" id="editEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                    </td>
+                    <td class="border px-4 py-2">
+                        <a href="delete_event?id_event=' . $row["id_event"] . '" name="deleteEvent" id="deleteEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Supprimer</a>
                     </td>
                 </tr>';
             }
