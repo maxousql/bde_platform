@@ -144,20 +144,4 @@
 
         })
     });
-
-    $('.confirmLogout').on('click', function (e) {
-        e.preventDefault();
-        var self = $(this);
-        swal({
-            title: "Voulez vous vous déconnecter ?",
-            text: "Une fois déconnecter, vous ne pourrez plus accéder à votre espace !",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                location.href = self.attr('href');
-            }
-        })
-    })
 </script>

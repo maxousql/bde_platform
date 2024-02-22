@@ -83,10 +83,16 @@ $router
         new Route('/process_editUser', 'processEditUser', 'GET', AdminUserController::class, 'processEditUser')
     )
     ->addRoute(
-        new Route('/processUpdateUser', 'processUpdateUser', 'GET', AdminUserController::class, 'processUpdateUser')
+        new Route('/processUpdateUser', 'processUpdateUser', 'POST', AdminUserController::class, 'processUpdateUser')
     )
     ->addRoute(
         new Route('/reservation', 'process_reservation', 'GET', ReservationController::class, 'process_reservation')
+    )
+    ->addRoute(
+        new Route('/add_user', 'process_add_user', 'GET', AdminUserController::class, 'add_user')
+    )
+    ->addRoute(
+        new Route('/process_add_user', 'process_add_user', 'POST', AdminUserController::class, 'processAddUser')
     );
 
 [
