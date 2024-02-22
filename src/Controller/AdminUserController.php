@@ -190,4 +190,19 @@ class AdminUserController
             return "Erreur: Vue introuvable";
         }
     }
+
+    public function process_deleteUser()
+    {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
+        $idUser = $_GET['id_user'];
+
+        $deleteUser = new EditUserModel();
+
+        $deleteUser->processDeleteUser($idUser);
+
+        header("Location: /admin_user");
+    }
 }

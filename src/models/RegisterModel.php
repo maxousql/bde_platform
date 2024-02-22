@@ -24,7 +24,7 @@ class RegisterModel
         $mail->Port = 587;
 
         //Recipients
-        $mail->setFrom('mlaiyiolaitong@gmail.com', 'Maxime');
+        $mail->setFrom('mlaiyiolaitong@gmail.com', 'BEEDE Sciences-U');
         $mail->addAddress($email);
 
         //Content

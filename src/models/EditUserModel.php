@@ -69,4 +69,13 @@ class EditUserModel
             ":mdp" => $passwordHash
         ]);
     }
+
+    public function processDeleteUser($idUser)
+    {
+        global $pdo;
+
+        $deleteUser_query = "DELETE FROM utilisateur WHERE id_utilisateur = $idUser";
+        $deleteUser_query_run = $pdo->prepare($deleteUser_query);
+        $deleteUser_query_run->execute();
+    }
 }

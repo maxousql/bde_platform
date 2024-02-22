@@ -132,6 +132,9 @@ $router
     )
     ->addRoute(
         new Route('/edit_event', 'edit_event', 'GET', AdminUserController::class, 'edit_event')
+    )
+    ->addRoute(
+        new Route('/process_deleteUser', 'process_deleteUser', 'GET', AdminUserController::class, 'process_deleteUser')
     );
 
 [
