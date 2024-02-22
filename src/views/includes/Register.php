@@ -1,8 +1,8 @@
 <?php
 
 global $pdo;
-$data = $db->query("SELECT id_ecole, nom_ecole FROM ecole")->fetchAll();
-$data2 = $db->query("SELECT id_promotion, nom_promotion FROM promotion")->fetchAll();
+$data = $pdo->query("SELECT id_ecole, nom_ecole FROM ecole")->fetchAll();
+$data2 = $pdo->query("SELECT id_promotion, nom_promotion FROM promotion")->fetchAll();
 ?>
 
 <section class="bg-gray-50 min-h-screen-custom flex items-center justify-center">
@@ -12,7 +12,7 @@ $data2 = $db->query("SELECT id_promotion, nom_promotion FROM promotion")->fetchA
         <div class="px-8 md:px-16">
             <h2 class="font-bold text-2xl text-[#002D74]">Inscrivez-vous</h2>
             <p class="text-xs mt-4 text-[#002D74]">Rejoigner les étudiants du BEEDE Lyon !</p>
-            <form method="post" class="flex flex-col gap-4">
+            <form method="POST" action="/process_register" class="flex flex-col gap-4">
                 <input class="p-2 mt-8 rounded-xl border" id="name" type="text" name="name" placeholder="Votre nom">
                 <input class="p-2 rounded-xl border w-full" id="firstname" type="text" name="firstname" placeholder="Votre prenom">
                 <select class="p-2 rounded-xl border w-full" name="ecole">

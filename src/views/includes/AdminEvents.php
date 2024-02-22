@@ -51,7 +51,7 @@
                         ' . $row['nombre_de_participants'] . '
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="process_editEvent?id_event=' . $row["id_event"] . '" name="editEvent" id="editEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                        <a href="edit_event?id_event=' . $row["id_event"] . '" name="editEvent" id="editEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                     </td>
                 </tr>';
             }

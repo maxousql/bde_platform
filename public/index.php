@@ -129,6 +129,9 @@ $router
     )
     ->addRoute(
         new Route('/admin_events', 'admin_events', 'GET', AdminUserController::class, 'admin_events')
+    )
+    ->addRoute(
+        new Route('/edit_event', 'edit_event', 'GET', AdminUserController::class, 'edit_event')
     );
 
 [
