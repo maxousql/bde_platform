@@ -3,9 +3,9 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\AdminUserController;
+use App\Controller\ErrorController;
 use App\Controller\EventsController;
 use App\Controller\IndexController;
-use App\Controller\ProfileController;
 use App\Controller\LoginController;
 use App\Controller\FavorisController;
 use App\Controller\MesFavorisController;
@@ -105,6 +105,12 @@ $router
     )
     ->addRoute(
         new Route('/process_add_user', 'process_add_user', 'POST', AdminUserController::class, 'processAddUser')
+    )
+    ->addRoute(
+        new Route('/error401', 'error401', 'GET', ErrorController::class, 'error401')
+    )
+    ->addRoute(
+        new Route('/error403', 'error403', 'GET', ErrorController::class, 'error403')
     );
 
 [

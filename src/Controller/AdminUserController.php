@@ -8,6 +8,10 @@ class AdminUserController
 {
     public function admin_user()
     {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
         $viewPath = __DIR__ . '/../views/includes/AdminUser.php';
         $title = "Gestion utilisateurs";
         $style = "adminUser.css";
@@ -32,6 +36,10 @@ class AdminUserController
     }
     public function edit_user($userData)
     {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
         $viewPath = __DIR__ . '/../views/includes/EditUser.php';
         $title = "Modification utilisateurs";
         $style = "editUser.css";
@@ -56,6 +64,13 @@ class AdminUserController
 
     public function processEditUser()
     {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+        }
         $editUserModel = new EditUserModel();
 
         $userData = $editUserModel->processEditUser();
@@ -65,6 +80,14 @@ class AdminUserController
 
     public function processUpdateUser($userData)
     {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
         $userData = $_POST;
 
         $editUserModel = new EditUserModel();
@@ -82,6 +105,10 @@ class AdminUserController
 
     public function add_user()
     {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
         $viewPath = __DIR__ . '/../views/includes/AddUser.php';
         $title = "Ajout d'utilisateur";
         $style = "adminUser.css";
@@ -99,6 +126,10 @@ class AdminUserController
 
     public function processAddUser()
     {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
         $addUserModel = new EditUserModel();
 
         try {

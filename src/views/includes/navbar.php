@@ -32,10 +32,10 @@
                             class="<?= $currentPage === 'events' ? 'bg-gray-900 text-white block rounded-md px-3 py-2  font-medium"' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Évenements</a>
                         <?php
                         if ($_SESSION['role'] === 2) {
-                            echo '<a href="/admin_user" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion utilisateurs</a>';
-                            echo '<a href="/admin_events" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
+                            echo '<a href="/admin_user" class="' . ($currentPage === 'admin_user' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion utilisateurs</a>';
+                            echo '<a href="/admin_events" class="' . ($currentPage === 'admin_events' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
                         } elseif ($_SESSION['role'] === 3) {
-                            echo '<a href="/admin_events" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
+                            echo '<a href="/admin_events" class="' . ($currentPage === 'admin_events' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
                         }
                         ?>
                     </div>
@@ -98,13 +98,25 @@
     <div class="hidden sm:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+            <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
                 aria-current="page">Accueil</a>
             <a href="events"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Évenement</a>
-            <a href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Ajouter/modifier
-                un évenement</a>
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Évenements</a>
+            <?php if ($_SESSION['role'] === 2) {
+                echo '<a href="/admin_user"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Gestion
+                utilisateurs</a>
+                <a href="admin_events"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Gestion
+                événements</a>';
+                if ($_SESSION['role'] === 3) {
+                    echo '<a href="admin_events"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Gestion
+                événements</a>';
+                }
+            } ?>
+
+
         </div>
     </div>
 </nav>

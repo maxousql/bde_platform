@@ -6,6 +6,10 @@ class MesReservationController
 {
     public function mesreservation()
     {
+        if ($_SESSION['role'] === 0) {
+            header("Location: /error403");
+            exit;
+        }
         $viewPath = __DIR__ . '/../views/includes/MesReservation.php';
         $title = "MesReservation";
         $style = "mesreservation.css";
