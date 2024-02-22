@@ -126,6 +126,9 @@ $router
     )
     ->addRoute(
         new Route('/suppressionreservation', 'process_suppressionreservation', 'GET', SuppressionReservationController::class, 'process_suppressionreservation')
+    )
+    ->addRoute(
+        new Route('/admin_events', 'admin_events', 'GET', AdminUserController::class, 'admin_events')
     );
 
 [

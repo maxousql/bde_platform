@@ -140,4 +140,25 @@ class AdminUserController
             $_SESSION['status_add_user'] = 0;
         }
     }
+
+    public function admin_events()
+    {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
+        $viewPath = __DIR__ . '/../views/includes/AdminEvents.php';
+        $title = "Gestion événements";
+        $style = "adminUser.css";
+        $currentPage = "admin_events";
+
+        if (file_exists($viewPath)) {
+            ob_start();
+            include $viewPath;
+            $content = ob_get_clean();
+            include __DIR__ . '/../views/layout.php';
+        } else {
+            return "Erreur: Vue introuvable";
+        }
+    }
 }
