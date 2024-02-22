@@ -55,9 +55,9 @@ class RegisterModel
                 $_SESSION['status'] = "Email Id already Exists";
                 header("Location: login");
             } else {
-                $query = "INSERT INTO utilisateur(nom, prenom, email, verify_token, id_role, id_ecole, id_promotion, mdp) VALUES (:name, :firstname, :email, :verify_token, :id_role, :id_ecole, :id_promotion, :password)";
+                $query = "INSERT INTO utilisateur(nom, prenom, email, verify_email, verify_token, id_role, id_ecole, id_promotion, mdp) VALUES (:name, :firstname, :email, :verify_email, :verify_token, :id_role, :id_ecole, :id_promotion, :password)";
                 $query_run = $pdo->prepare($query);
-                $query_run->execute([":name" => $name, ":firstname" => $firstname, ":email" => $email, ":verify_token" => $verify_token, ":id_role" => 1, ":id_ecole" => 1, ":id_promotion" => 1, ":password" => $passwordHash]);
+                $query_run->execute([":name" => $name, ":firstname" => $firstname, ":email" => $email, ":verify_email" => 0, ":verify_token" => $verify_token, ":id_role" => 1, ":id_ecole" => $ecole, ":id_promotion" => $promotion, ":password" => $passwordHash]);
             }
 
             if ($query_run) {
@@ -83,17 +83,15 @@ class RegisterModel
         $verify_email_query_run->execute();
 
         $row = $verify_email_query_run->fetch($pdo::FETCH_ASSOC);
-
         if ($row['verify_email']) {
-            echo "existe mais déjà valid";
+            header("Location: /");
         } elseif ($row['verify_email'] === null) {
-            echo 'nexiste pas';
+            header("Location: /register");
         } else {
             $valid_token = "UPDATE utilisateur SET verify_email = 1 WHERE verify_token=:token LIMIT 1";
             $valid_token_run = $pdo->prepare($valid_token);
             $valid_token_run->bindParam(':token', $token);
             $valid_token_run->execute();
-            var_dump($valid_token_run->execute());
         }
     }
 }

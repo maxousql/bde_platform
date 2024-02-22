@@ -10,11 +10,11 @@
         <thead>
             <tr>
                 <th class="px-4 py-2">Nom</th>
-                <th class="px-4 py-2">Prénom</th>
-                <th class="px-4 py-2">Adresse email</th>
-                <th class="px-4 py-2">Rôle</th>
-                <th class="px-4 py-2">Ecole</th>
-                <th class="px-4 py-2">Rôle</th>
+                <th class="px-4 py-2">Adresse</th>
+                <th class="px-4 py-2">Catégorie</th>
+                <th class="px-4 py-2">Prix</th>
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2">Nombre de participants</th>
                 <th class="px-4 py-2"></th>
             </tr>
         </thead>
@@ -22,37 +22,36 @@
             <?php
             global $pdo;
 
-            $getAllUsers_query = "SELECT * FROM utilisateur INNER JOIN role ON utilisateur.id_role = role.id_role
-            INNER JOIN ecole ON utilisateur.id_ecole = ecole.id_ecole
-            INNER JOIN promotion ON utilisateur.id_promotion = promotion.id_promotion 
-            ORDER BY utilisateur.nom ASC";
-            $getAllUsers_query_run = $pdo->prepare($getAllUsers_query);
-            $getAllUsers_query_run->execute();
-            $data = $getAllUsers_query_run->fetchAll();
+            $getAllEvents_query = "SELECT * FROM event 
+            INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie
+            ORDER BY event.nom_event ASC";
+            $getAllEvents_query_run = $pdo->prepare($getAllEvents_query);
+            $getAllEvents_query_run->execute();
+            $data = $getAllEvents_query_run->fetchAll();
 
             foreach ($data as $row) {
                 echo '
                 <tr>
                     <td class="border px-4 py-2">
-                        ' . $row['nom'] . '
-                    </td>
-                    <td class="border px-4 py-2">
-                        ' . $row['prenom'] . '
+                        ' . $row['nom_event'] . '
                     </td>
                      <td class="border px-4 py-2">
-                        ' . $row['email'] . '
+                        ' . $row['adresse'] . '
                     </td>
                     <td class="border px-4 py-2">
-                        ' . $row['nom_role'] . '
+                        ' . $row['nom_categorie'] . '
                     </td>
                     <td class="border px-4 py-2">
-                        ' . $row['nom_ecole'] . '
+                        ' . $row['prix'] . '
                     </td>
                     <td class="border px-4 py-2">
-                        ' . $row['nom_promotion'] . '
+                        ' . $row['date_event'] . '
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="process_editUser?id_user=' . $row["id_utilisateur"] . '" name="editUser" id="editUser" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                        ' . $row['nombre_de_participants'] . '
+                    </td>
+                    <td class="border px-4 py-2">
+                        <a href="edit_event?id_event=' . $row["id_event"] . '" name="editEvent" id="editEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                     </td>
                 </tr>';
             }

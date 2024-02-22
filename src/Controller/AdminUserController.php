@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Models\EditUserModel;
+use App\Models\UpdateEventModel;
 
 class AdminUserController
 {
@@ -43,7 +44,7 @@ class AdminUserController
         $viewPath = __DIR__ . '/../views/includes/EditUser.php';
         $title = "Modification utilisateurs";
         $style = "editUser.css";
-        $currentPage = "edit_user";
+        $currentPage = "admin_user";
         if (isset($_SESSION['status_update_user']) || $_SESSION['status_update_user'] === 1) {
             unset($_SESSION['status_update_user']);
             $validUpdate = 1;
@@ -138,6 +139,55 @@ class AdminUserController
             header("Location: /admin_user");
         } catch (\Throwable $th) {
             $_SESSION['status_add_user'] = 0;
+        }
+    }
+
+    public function admin_events()
+    {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
+        $viewPath = __DIR__ . '/../views/includes/AdminEvents.php';
+        $title = "Gestion événements";
+        $style = "adminUser.css";
+        $currentPage = "admin_events";
+
+        if (file_exists($viewPath)) {
+            ob_start();
+            include $viewPath;
+            $content = ob_get_clean();
+            include __DIR__ . '/../views/layout.php';
+        } else {
+            return "Erreur: Vue introuvable";
+        }
+    }
+
+    public function edit_event()
+    {
+        if ($_SESSION['role'] != 2) {
+            header("Location: /error403");
+            exit;
+        }
+        $viewPath = __DIR__ . '/../views/includes/EditEvents.php';
+        $title = "Modification événements";
+        $style = "editUser.css";
+        $currentPage = "admin_events";
+        if (isset($_SESSION['status_update_user']) || $_SESSION['status_update_user'] === 1) {
+            unset($_SESSION['status_update_user']);
+            $validUpdate = 1;
+        } elseif (isset($_SESSION['status_update_user']) || $_SESSION['status_update_user'] === 0) {
+            unset($_SESSION['status_update_user']);
+            $validUpdate = 2;
+        }
+
+        if (file_exists($viewPath)) {
+            ob_start();
+            include $viewPath;
+            $content = ob_get_clean();
+            include __DIR__ . '/../views/layout.php';
+        } else {
+            return "Erreur: Vue introuvable";
         }
     }
 }
