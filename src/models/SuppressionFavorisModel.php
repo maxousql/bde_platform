@@ -17,14 +17,13 @@ if (!isset($_GET['id_event']) || !is_numeric($_GET['id_event'])) {
     exit();
 }
 
-// Inclure ici votre code de connexion à la base de données
 
 $user_id = $_SESSION['id_user'];
 $event_id = $_GET['id_event'];
 
 $pdo->query("DELETE FROM favoris WHERE id_utilisateur = $user_id AND id_event = $event_id");
 
-echo "Suppression réussi";
+header("Location: mesfavoris");
 exit();
     }
 }

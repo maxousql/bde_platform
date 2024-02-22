@@ -11,6 +11,7 @@ use App\Controller\FavorisController;
 use App\Controller\MesFavorisController;
 use App\Controller\MesReservationController;
 use App\Controller\SuppressionFavorisController;
+use App\Controller\SuppressionReservationController;
 use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
@@ -115,6 +116,9 @@ $router
     )
     ->addRoute(
         new Route('/suppressionfavoris', 'process_suppressionfavoris', 'GET', SuppressionFavorisController::class, 'process_suppressionfavoris')
+    )
+    ->addRoute(
+        new Route('/suppressionreservation', 'process_suppressionreservation', 'GET', SuppressionReservationController::class, 'process_suppressionreservation')
     );
 
 [
