@@ -136,6 +136,9 @@ $router
     )
     ->addRoute(
         new Route('/profile', 'profile', 'GET', ProfileController::class, 'profile')
+    )
+    ->addRoute(
+        new Route('/process_deleteUser', 'process_deleteUser', 'GET', AdminUserController::class, 'process_deleteUser')
     );
 
 [

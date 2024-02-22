@@ -1,12 +1,13 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <h2 class="text-2xl font-bold mb-4">Liste utilisateurs</h2>
+    <h2 class="text-2xl font-bold mb-4">Liste des événements</h2>
     <script>
         $(document).ready(function() {
             new DataTable('#example');
         });
     </script>
+    <a href="/add_event" class="bg-[#002D74] rounded-xl text-white py-2 p-2 mb-4 hover:scale-105 duration-300">Ajouter un événement</a>
+    <h2 class="mb-4"></h2>
     <table id="example" class="display" style="width:100%">
-        <button>+</button>
         <thead>
             <tr>
                 <th class="px-4 py-2">Nom</th>
