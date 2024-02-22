@@ -8,6 +8,7 @@ use App\Controller\IndexController;
 use App\Controller\ProfileController;
 use App\Controller\LoginController;
 use App\Controller\FavorisController;
+use App\Controller\MesReservationController;
 use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
@@ -91,6 +92,9 @@ $router
     )
     ->addRoute(
         new Route('/favoris', 'process_favoris', 'GET', FavorisController::class, 'process_favoris')
+    )
+    ->addRoute(
+        new Route('/mesreservation', 'mesreservation', 'GET', MesReservationController::class, 'mesreservation')
     );
 
 [
