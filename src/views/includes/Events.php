@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<<<<<<< HEAD
 
 <body>
 
@@ -16,6 +17,47 @@
 INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie;")->fetchAll();
 
     foreach ($data as $row) {
+=======
+<body>
+
+<form action="" method="GET">
+    <input type="text" name="search" placeholder="Rechercher un événement">
+    <button type="submit">Rechercher</button>
+</form>
+
+<?php
+global $pdo;
+
+// Définition du nombre d'événements par page
+$eventsPerPage = 10;
+
+// Récupération du numéro de page à partir de l'URL, par défaut à 1 si non spécifié
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+// Calcul de l'offset pour la pagination
+$offset = ($page - 1) * $eventsPerPage;
+
+// Initialisation du terme de recherche
+$searchTerm = '';
+
+// Vérifie si un terme de recherche a été soumis
+if (isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+}
+
+// Requête SQL pour récupérer les événements correspondant au terme de recherche et paginés
+$sql = "SELECT * FROM event 
+        INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie
+        WHERE nom_event LIKE '%$searchTerm%'
+        LIMIT $eventsPerPage OFFSET $offset";
+
+$data = $pdo->query($sql)->fetchAll();
+
+foreach ($data as $row) { 
+    // Votre code pour afficher chaque événement
+    $imageData = base64_encode($row['photo_Event']);
+    $src = 'data:image/jpeg;base64,'.$imageData;
+>>>>>>> 08d7f2b (ajout bar de recherche et pagination)
 
         $imageData = base64_encode($row['photo_Event']);
         $src = 'data:image/jpeg;base64,' . $imageData;
@@ -54,6 +96,7 @@ INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie;
                 </div>
             </form>
             </div>';
+<<<<<<< HEAD
     }
     ?>
     <div class="relative min-h-screen flex flex-col items-center justify-center ">
@@ -183,3 +226,16 @@ INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie;
 </body>
 
 </html>
+=======
+}
+
+// Ajout des liens vers la page précédente et suivante avec le terme de recherche conservé dans l'URL
+$prevPage = $page > 1 ? $page - 1 : 1;
+$nextPage = $page + 1;
+
+echo "<a href='?search=$searchTerm&page=$prevPage'>Page précédente</a>";
+echo "<a href='?search=$searchTerm&page=$nextPage'>Page suivante</a>";
+?>
+</body>
+</html>
+>>>>>>> 08d7f2b (ajout bar de recherche et pagination)
