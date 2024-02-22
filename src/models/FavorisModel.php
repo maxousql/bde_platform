@@ -19,7 +19,7 @@ class FavorisModel
             $result = $stmt->fetchColumn();
 
             if ($result > 0) {
-                echo "Ce billet est déjà en favori.";
+                echo "Cet event est déjà en favori.";
             } else {
                 // Ajouter le billet en favori
                 $stmt = $pdo->prepare("INSERT INTO favoris (id_utilisateur, id_event) VALUES (:id_utilisateur, :id_event)");
