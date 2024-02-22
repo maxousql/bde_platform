@@ -9,6 +9,47 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
+<?php
+$DB_HOST = '127.0.0.1';
+$DB_NAME = 'bde_plateform';
+$DB_CHARSET = 'utf8mb4';
+$DB_USER = 'root';
+$DB_PASSWORD = '';
+$dsn = "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=$DB_CHARSET";
+
+$db = new PDO($dsn, $DB_USER, $DB_PASSWORD);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $nom_event = $_POST['nom_event'];
+    $description_event = $_POST["description_event"];
+    $adresse = $_POST['adresse'];
+    $photo_Event = $_POST['photo_Event'];
+    $id_categorie = $_POST['id_categorie'];
+
+
+    try {
+        $stmt = $db->prepare("INSERT INTO event (nom_event, description_event, adresse, photo_Event, id_categorie) VALUES (:nom_event, :description_event, :adresse, :photo_Event, :id_categorie)");
+
+        $stmt->bindParam(':nom_event', $nom_event);
+        $stmt->bindParam(':description_event', $description_event);
+        $stmt->bindParam(':adresse', $adresse);
+        $stmt->bindParam(':photo_Event', $photo_Event);
+        $stmt->bindParam(':id_categorie', $id_categorie);
+
+        // Exécuter la requête
+        $stmt->execute();
+
+        echo "Inscription réussie !";
+    } catch (PDOException $e) {
+        echo "Erreur lors de l'inscription : " . $e->getMessage();
+    }
+}
+
+$data = $db->query("SELECT id_categorie, nom_categorie FROM categorie_event")->fetchAll();
+
+?>
+
 <body>
     <div class="bg-gray-900 h-screen flex flex-col items-center justify-center text-center">
         <div class="text-white">
@@ -17,12 +58,12 @@
         <div class="mt-8">
             <form action="#" method="POST" class="flex flex-col items-center" style="width: 500px" ;>
                 <input type="text" style="width: 500px" name="nom_event" placeholder="Nom de l'évenement" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
-                <textarea name="message" placeholder="Description de l'évenement" rows="5" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4 resize-none w-full" required></textarea>
-                <input style="width: 500px" type="text" name="nom_event" placeholder="Adresse" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
+                <textarea name="description_event" placeholder="Description de l'évenement" rows="5" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4 resize-none w-full" required></textarea>
+                <input style="width: 500px" type="text" name="adresse" placeholder="Adresse" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
                 <div style="width: 500px" class="bg-white p7 rounded w-9/12 mx-auto" style="width: 500px">
                     <div x-data="dataFileDnD()" class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                         <div x-ref="dnd" class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
-                            <input accept="*" type="file" multiple class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer" @change="addFiles($event)" @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');" @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" title="" />
+                            <input name="photo_Event" accept="*" type="file" multiple class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer" @change="addFiles($event)" @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');" @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" title="" />
 
                             <div class="flex flex-col items-center justify-center py-10 text-center">
                                 <svg class="w-6 h-6 mr-1 text-current-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,12 +179,13 @@
                         };
                     }
                 </script>
-                <select id="country" name="country" autocomplete="country-name" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4 resize-none w-full" style="border-top-width: 0px; margin-top: 16px;"">
-                    <option>Sport</option>
-                    <option>Soirée</option>
-                    <option>After</option>
+                <select name="id_categorie" autocomplete="country-name" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4 resize-none w-full" style="border-top-width: 0px; margin-top: 16px;"">
+                    <option value="" disabled selected>Choisissez catégorie</option>
+                        <?php foreach ($data as $row) : ?>
+                            <option value=" <?= $row['id_categorie'] ?>"><?= $row['nom_categorie'] ?></option>
+                <?php endforeach; ?>
                 </select>
-                <button type=" submit" class="bg-blue-500 py-2 px-4 text-white rounded-md hover:bg-blue-600 focus:outline-none">Publier</button>
+                <button type=" submit" class="bg-[#FAC042] py-2 px-4 text-white rounded-md hover:bg-blue-600 focus:outline-none">Publier</button>
             </form>
         </div>
 
