@@ -9,17 +9,17 @@
 
 <body>
 
-<form action="" method="GET">
-    <div class="search_bar">
-        <input type="text" name="search" placeholder="Rechercher un événement">
-        <button type="submit">Rechercher</button>
-    </div>
-</form>
+    <form action="" method="GET">
+        <div class="search_bar">
+            <input type="text" name="search" placeholder="Rechercher un événement">
+            <button type="submit">Rechercher</button>
+        </div>
+    </form>
     <?php
     global $pdo;
 
-// Définition du nombre d'événements par page
-$eventsPerPage = 5;
+    // Définition du nombre d'événements par page
+    $eventsPerPage = 5;
 
 
     // Récupération du numéro de page à partir de l'URL, par défaut à 1 si non spécifié
@@ -44,16 +44,14 @@ $eventsPerPage = 5;
 
     $data = $pdo->query($sql)->fetchAll();
 
-    if (isset($_SESSION['email'])) {
-        $btnReservationFavoris = '<a class="a_event_reserver" href="reservation?id_event=' . $row["id_event"] . '">Réserver</a>
-                    <a class="a_event_reserver" href="favoris?id_event=' . $row["id_event"] . '">Favoris</a>';
-    }
-
     foreach ($data as $row) {
         // Votre code pour afficher chaque événement
         $imageData = base64_encode($row['photo_Event']);
         $src = 'data:image/jpeg;base64,' . $imageData;
-
+        if (isset($_SESSION['email'])) {
+            $btnReservationFavoris = '<a class="a_event_reserver" href="reservation?id_event=' . $row["id_event"] . '">Réserver</a>
+                    <a class="a_event_reserver" href="favoris?id_event=' . $row["id_event"] . '">Favoris</a>';
+        }
         echo '<div class="ajustement_event">
             <div class="flex-none w-56 relative">
                 <img src="' . $src . '" alt="image"
@@ -88,12 +86,12 @@ $eventsPerPage = 5;
     // Ajout des liens vers la page précédente et suivante avec le terme de recherche conservé dans l'URL
     $prevPage = $page > 1 ? $page - 1 : 1;
     $nextPage = $page + 1;
-echo "<div class='alignement_bouton'>
+    echo "<div class='alignement_bouton'>
         <a class='bouton_page_prec' href='?search=$searchTerm&page=$prevPage'><-- Page précédente</a>
         <span>Page $page</span>
         <a class='bouton_page_suiv' href='?search=$searchTerm&page=$nextPage'>Page suivante --></a>
      </div>";
-?>
+    ?>
 </body>
 
 </html>
