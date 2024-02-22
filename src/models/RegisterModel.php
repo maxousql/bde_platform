@@ -12,6 +12,7 @@ class RegisterModel
     {
         $mail = new PHPMailer(true);
 
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->SMTPAuth = true;
 
@@ -27,9 +28,11 @@ class RegisterModel
         $mail->addAddress($email);
 
         //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Here is the subject';
-        $mail->Body = 'This is the HTML message body <b>in bold!</b>';
+        $mail->isHTML(true);
+        $mail->Subject = 'Validation de compte BEEDE Sciences-U';
+        ob_start();
+        include __DIR__ . '/../views/includes/Mailer.php';
+        $mail->Body = ob_get_clean();
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
@@ -38,11 +41,10 @@ class RegisterModel
     public function processRegister($userData)
     {
         global $pdo;
-        var_dump($_POST);
         session_start();
         if (isset($_POST['valid_register'])) {
             extract($_POST);
-
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
             $verify_token = md5(rand());
 
             $check_email_query = "SELECT email FROM utilisateur WHERE email=? LIMIT 1";
@@ -55,7 +57,7 @@ class RegisterModel
             } else {
                 $query = "INSERT INTO utilisateur(nom, prenom, email, verify_token, id_role, id_ecole, id_promotion, mdp) VALUES (:name, :firstname, :email, :verify_token, :id_role, :id_ecole, :id_promotion, :password)";
                 $query_run = $pdo->prepare($query);
-                $query_run->execute([":name" => $name, ":firstname" => $firstname, ":email" => $email, ":verify_token" => $verify_token, ":id_role" => 1, ":id_ecole" => 1, ":id_promotion" => 1, ":password" => $password]);
+                $query_run->execute([":name" => $name, ":firstname" => $firstname, ":email" => $email, ":verify_token" => $verify_token, ":id_role" => 1, ":id_ecole" => 1, ":id_promotion" => 1, ":password" => $passwordHash]);
             }
 
             if ($query_run) {
@@ -71,8 +73,27 @@ class RegisterModel
         }
     }
 
-    public function verify_email()
+    public function process_verify_email($token)
     {
+        global $pdo;
 
+        $verify_email = "SELECT verify_email FROM utilisateur WHERE verify_token=:token LIMIT 1";
+        $verify_email_query_run = $pdo->prepare($verify_email);
+        $verify_email_query_run->bindParam(':token', $token);
+        $verify_email_query_run->execute();
+
+        $row = $verify_email_query_run->fetch($pdo::FETCH_ASSOC);
+
+        if ($row['verify_email']) {
+            echo "existe mais déjà valid";
+        } elseif ($row['verify_email'] === null) {
+            echo 'nexiste pas';
+        } else {
+            $valid_token = "UPDATE utilisateur SET verify_email = 1 WHERE verify_token=:token LIMIT 1";
+            $valid_token_run = $pdo->prepare($valid_token);
+            $valid_token_run->bindParam(':token', $token);
+            $valid_token_run->execute();
+            var_dump($valid_token_run->execute());
+        }
     }
 }
