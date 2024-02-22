@@ -32,10 +32,10 @@
                             class="<?= $currentPage === 'events' ? 'bg-gray-900 text-white block rounded-md px-3 py-2  font-medium"' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Évenements</a>
                         <?php
                         if ($_SESSION['role'] === 2) {
-                            echo '<a href="/admin_user" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion utilisateurs</a>';
-                            echo '<a href="/admin_events" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
+                            echo '<a href="/admin_user" class="' . ($currentPage === 'admin_user' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion utilisateurs</a>';
+                            echo '<a href="/admin_events" class="' . ($currentPage === 'admin_events' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
                         } elseif ($_SESSION['role'] === 3) {
-                            echo '<a href="/admin_events" class="' . ($currentPage === 'test' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
+                            echo '<a href="/admin_events" class="' . ($currentPage === 'admin_events' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white') . ' rounded-md px-3 py-2 text-sm font-medium">Gestion événements</a>';
                         }
                         ?>
                     </div>
@@ -44,7 +44,7 @@
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <?php
                 if (isset($_SESSION['email'])) {
-                    echo '<a href="/reservation"
+                    echo '<a href="/mesreservation"
                     class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">View notifications</span>
@@ -73,8 +73,8 @@
                         <!-- Active: "bg-gray-100", Not Active: "" -->
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-0">Votre profil</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-1">Vos évenements</a>
+                        <a href="/mesfavoris" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                            id="user-menu-item-1">Vos favoris</a>
                         <a href="/process_logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-2 confirmLogout">Se déconnecter</a>
                     </div>';
@@ -98,13 +98,25 @@
     <div class="hidden sm:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+            <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
                 aria-current="page">Accueil</a>
             <a href="events"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Évenement</a>
-            <a href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Ajouter/modifier
-                un évenement</a>
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Évenements</a>
+            <?php if ($_SESSION['role'] === 2) {
+                echo '<a href="/admin_user"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Gestion
+                utilisateurs</a>
+                <a href="admin_events"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Gestion
+                événements</a>';
+                if ($_SESSION['role'] === 3) {
+                    echo '<a href="admin_events"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Gestion
+                événements</a>';
+                }
+            } ?>
+
+
         </div>
     </div>
 </nav>
@@ -144,20 +156,4 @@
 
         })
     });
-
-    $('.confirmLogout').on('click', function (e) {
-        e.preventDefault();
-        var self = $(this);
-        swal({
-            title: "Voulez vous vous déconnecter ?",
-            text: "Une fois déconnecter, vous ne pourrez plus accéder à votre espace !",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                location.href = self.attr('href');
-            }
-        })
-    })
 </script>

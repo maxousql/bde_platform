@@ -3,10 +3,15 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\AdminUserController;
+use App\Controller\ErrorController;
 use App\Controller\EventsController;
 use App\Controller\IndexController;
-use App\Controller\ProfileController;
 use App\Controller\LoginController;
+use App\Controller\FavorisController;
+use App\Controller\MesFavorisController;
+use App\Controller\MesReservationController;
+use App\Controller\SuppressionFavorisController;
+use App\Controller\SuppressionReservationController;
 use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
@@ -84,7 +89,7 @@ $router
         new Route('/process_editUser', 'processEditUser', 'GET', AdminUserController::class, 'processEditUser')
     )
     ->addRoute(
-        new Route('/processUpdateUser', 'processUpdateUser', 'GET', AdminUserController::class, 'processUpdateUser')
+        new Route('/processUpdateUser', 'processUpdateUser', 'POST', AdminUserController::class, 'processUpdateUser')
     )
     ->addRoute(
         new Route('/reservation', 'process_reservation', 'GET', ReservationController::class, 'process_reservation')
@@ -94,6 +99,33 @@ $router
     )
     ->addRoute(
         new Route('/process_addevent', 'process_addevent', 'POST', AddEventController::class, 'process_addevent')
+    )
+    ->addRoute(
+        new Route('/favoris', 'process_favoris', 'GET', FavorisController::class, 'process_favoris')
+    )
+    ->addRoute(
+        new Route('/mesreservation', 'mesreservation', 'GET', MesReservationController::class, 'mesreservation')
+    )
+    ->addRoute(
+        new Route('/mesfavoris', 'mesfavoris', 'GET', MesFavorisController::class, 'mesfavoris')
+    )
+    ->addRoute(
+        new Route('/add_user', 'process_add_user', 'GET', AdminUserController::class, 'add_user')
+    )
+    ->addRoute(
+        new Route('/process_add_user', 'process_add_user', 'POST', AdminUserController::class, 'processAddUser')
+    )
+    ->addRoute(
+        new Route('/error401', 'error401', 'GET', ErrorController::class, 'error401')
+    )
+    ->addRoute(
+        new Route('/error403', 'error403', 'GET', ErrorController::class, 'error403')
+    )
+    ->addRoute(
+        new Route('/suppressionfavoris', 'process_suppressionfavoris', 'GET', SuppressionFavorisController::class, 'process_suppressionfavoris')
+    )
+    ->addRoute(
+        new Route('/suppressionreservation', 'process_suppressionreservation', 'GET', SuppressionReservationController::class, 'process_suppressionreservation')
     );
 
 [
