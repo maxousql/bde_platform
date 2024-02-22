@@ -3,7 +3,7 @@ global $pdo;
 
 
 // Requête pour récupérer les données de l'utilisateur avec l'ID 1
-$id_utilisateur = 49;
+$id_utilisateur = $_SESSION['id_user'];
 $query = $pdo->prepare("SELECT * FROM utilisateur
 INNER JOIN ecole ON utilisateur.id_ecole = ecole.id_ecole 
 INNER JOIN promotion ON utilisateur.id_promotion = promotion.id_promotion
@@ -17,8 +17,13 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
     <title>Document</title>
 </head>
+
 <body class="bgc">
 
     <section id="concept" class="container">
@@ -49,7 +54,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                     <p><?php echo $user['nom_ecole']; ?> / <?php echo $user['nom_promotion']; ?></p>
                 </article>
                 <article class="col-md-12 col-sm-12 d-flex align-items-center justify-content-center">
-                    <a href="#" class="btn blanc">Modifier</a>
+                    <a href="#" class="btnb blanc">Modifier</a>
                 </article>
             </div>
         </div>

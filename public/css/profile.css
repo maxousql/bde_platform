@@ -11,12 +11,15 @@ ul img {
 /******************************
         CLASSES GLOBALES
 ******************************/
-.btn {
+.btnb {
   background-color: rgb(9, 42, 67);
   padding: 10px;
+  border-radius: 5px;
 }
-.btn:hover {
+.btnb:hover {
   background-color: rgb(249, 175, 16);
+  color: #092a43;
+  text-decoration: none;
 }
 
 .container {
@@ -539,12 +542,12 @@ footer ul li h3 {
 #concept h2::before {
   content: "";
   height: 200px;
-  width: 230px;
+  width: 200px;
   position: absolute;
   z-index: -1;
   top: -90px;
   left: 15px;
-  background-image: url(img/logobeede.png);
+  background-image: url(../img/logobeede.png);
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
