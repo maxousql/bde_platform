@@ -48,7 +48,7 @@ foreach ($data as $row) {
                 </div>
                 <div>
                     <a class="a_event_reserver" href="reservation?id_event='.$row["id_event"].'">Réserver</a>
-                    <a class="a_event_reserver" href="favoris?id_event='.$row["id_event"].'">Favoris</a>
+                    <a class="a_event_supprimer" href="suppressionfavoris?id_event='.$row["id_event"].'">Supprimer</a>
                     <p class="text-sm font-medium text-slate-400 text_nombre_participant">nombre de participant: '.$row["nombre_de_participants"].'</p>
                 </div>
             </form>

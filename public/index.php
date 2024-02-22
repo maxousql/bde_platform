@@ -10,6 +10,8 @@ use App\Controller\LoginController;
 use App\Controller\FavorisController;
 use App\Controller\MesFavorisController;
 use App\Controller\MesReservationController;
+use App\Controller\SuppressionFavorisController;
+use App\Controller\SuppressionReservationController;
 use App\Controller\LogoutController;
 use App\Controller\RegisterController;
 use App\Controller\AssetController;
@@ -111,6 +113,12 @@ $router
     )
     ->addRoute(
         new Route('/error403', 'error403', 'GET', ErrorController::class, 'error403')
+    )
+    ->addRoute(
+        new Route('/suppressionfavoris', 'process_suppressionfavoris', 'GET', SuppressionFavorisController::class, 'process_suppressionfavoris')
+    )
+    ->addRoute(
+        new Route('/suppressionreservation', 'process_suppressionreservation', 'GET', SuppressionReservationController::class, 'process_suppressionreservation')
     );
 
 [

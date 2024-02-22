@@ -17,7 +17,7 @@ class ReservationModel
             $stmt->bindParam(':id_event', $id_event);
 
             if ($stmt->execute()) {
-                echo "Billet créé avec succès!";
+                header("Location: events");
 
                 // Ensuite, mettez à jour le nombre de participants pour cet événement
                 $updateStmt = $pdo->prepare("UPDATE event SET nombre_de_participants = nombre_de_participants + 1 WHERE id_event = :id_event");
