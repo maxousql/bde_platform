@@ -8,6 +8,7 @@ use App\Controller\EventsController;
 use App\Controller\IndexController;
 use App\Controller\LoginController;
 use App\Controller\FavorisController;
+use App\Controller\ProfileController;
 use App\Controller\MesFavorisController;
 use App\Controller\MesReservationController;
 use App\Controller\SuppressionFavorisController;
@@ -132,6 +133,9 @@ $router
     )
     ->addRoute(
         new Route('/edit_event', 'edit_event', 'GET', AdminUserController::class, 'edit_event')
+    )
+    ->addRoute(
+        new Route('/profile', 'profile', 'GET', ProfileController::class, 'profile')
     );
 
 [
