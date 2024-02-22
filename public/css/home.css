@@ -1,0 +1,687 @@
+/******************************
+        CSS GLOBAL
+******************************/
+
+ul img {
+  height: 48px;
+}
+/******************************
+        CLASSES GLOBALES
+******************************/
+.btnb {
+  background-color: rgb(9, 42, 67);
+  padding: 10px;
+  border-radius: 5px;
+}
+.btnb:hover {
+  background-color: rgb(249, 175, 16);
+  color: #092a43;
+  text-decoration: none;
+}
+
+.btn2 {
+  background-color: rgb(9, 42, 67);
+  padding: 10px;
+  border-radius: 5px;
+}
+.btn2:hover {
+  background-color: rgb(249, 175, 16);
+  color: #092a43;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/******************************
+        STYLE PAR SECTION
+******************************/
+header {
+  background-image: linear-gradient(
+      to top right,
+      rgba(249, 175, 16, 0.2),
+      rgba(249, 175, 16, 0.2)
+    ),
+    url(../img/fond1.jpg);
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  color: #f5f3e2;
+  padding: 20px;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header nav #burger {
+  display: none;
+}
+header nav img {
+  height: 60px;
+}
+header nav ul {
+  display: flex;
+}
+header nav ul li {
+  margin-left: 20px;
+}
+header div {
+  text-align: center;
+  margin: 150px 0 250px;
+}
+header h1 {
+  font-size: 80px;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 100%;
+}
+header h2 {
+  font-size: 20px;
+}
+
+main #rejoindre {
+  background-image: linear-gradient(
+      to right,
+      rgba(249, 175, 16, 0.2) 55%,
+      black 45%
+    ),
+    url(../img/join.jpg);
+  height: 550px;
+  background-size: cover;
+  background-position: center 35%;
+  color: #f5f3e2;
+  padding: 50px 0 60px;
+}
+
+main #rejoindre div {
+  display: flex;
+  justify-content: flex-end;
+}
+main #rejoindre article {
+  width: 42%;
+}
+
+main #rejoindre article p {
+  margin-bottom: 40px;
+}
+
+main #objectives {
+  text-align: center;
+}
+
+main #objectives ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+main #objectives ul li {
+  width: 25%;
+  border-top: 1px solid rgb(235, 235, 235);
+  border-right: 1px solid rgb(235, 235, 235);
+  padding: 40px 10px 30px;
+}
+main #objectives ul li:last-of-type {
+  border-right: none;
+}
+
+#programs {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement les éléments */
+  align-items: center; /* Centrer verticalement les éléments */
+  margin-top: -150px;
+  width: 100%; /* Ajout de cette règle pour occuper toute la largeur */
+}
+
+.centered-images {
+  display: flex;
+  flex-direction: row;
+}
+
+#programs a {
+  flex-grow: 1;
+  margin: 0;
+  box-shadow: 0 3px 10px rgba(249, 175, 16, 0.2);
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex; /* Ajout d'affichage flex pour centrer le contenu */
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  color: black; /* Couleur du texte */
+  text-align: center; /* Centrer le texte */
+  width: 550px;
+}
+
+#programs a h2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+main #services {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin: 0;
+}
+main #services li {
+  width: calc(100% / 3);
+  padding: 50px 30px;
+}
+main #services li:nth-of-type(odd) {
+  background-color: rgb(245, 243, 225);
+}
+
+footer {
+  background: black;
+  border-top: 10px solid rgb(249, 175, 16);
+  color: white;
+  padding: 20px 0;
+}
+
+footer > div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+footer article {
+  width: 25%;
+  text-align: right;
+}
+footer article img {
+  height: 60px;
+}
+footer article a {
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+footer form {
+  width: 45%;
+  background: white;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  margin-top: -100px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 -3px 10px rgba(249, 175, 16, 0.2);
+}
+footer form h2 {
+  text-transform: uppercase;
+}
+
+footer form input:not([type="submit"]) {
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 5px;
+}
+footer form ::placeholder {
+  color: black;
+  font-size: 13px;
+}
+footer form input[type="submit"] {
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+footer ul {
+  width: 25%;
+}
+
+footer ul li {
+  display: flex;
+  align-items: baseline;
+}
+footer ul li i {
+  color: rgb(249, 175, 16);
+  margin-right: 15px;
+}
+footer ul li h3 {
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+/******************************
+        RESPONSIVE
+******************************/
+
+@media (min-width: 768px) and (max-width: 990px) {
+  main #services li:nth-of-type(odd) {
+    background-color: white;
+  }
+  main #services li {
+    width: 50%;
+  }
+  main #services li:nth-of-type(2),
+  main #services li:nth-of-type(3),
+  main #services li:nth-of-type(6) {
+    background-color: rgb(235, 235, 235);
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    width: 90%;
+  }
+
+  /*********** menu mobile**********/
+  header nav {
+    background: rgb(249, 175, 16);
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 10px 20px;
+  }
+  header nav ul {
+    height: 0;
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 60px;
+    background: rgb(249, 175, 16);
+    padding: 10px;
+  }
+  header nav ul li {
+    width: 100%;
+    padding: 20px;
+    margin-left: 0;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  header nav #burger {
+    display: block;
+    appearance: none;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  header nav #burger::before {
+    content: "\f0c9";
+  }
+  header nav #burger:checked::before {
+    content: "\f00d";
+  }
+  header nav #burger:checked + ul {
+    height: auto;
+  }
+
+  /*********************************/
+
+  main #fitclub {
+    background: black;
+    padding: 80px;
+  }
+  main #fitclub article {
+    width: 100%;
+  }
+  main #fitclub article h2 {
+    margin-left: 0;
+  }
+
+  main #objectives ul li {
+    width: 50%;
+  }
+
+  main #programs a {
+    width: 100%;
+  }
+
+  main #services li {
+    width: 100%;
+  }
+
+  footer > div > * {
+    width: 100%;
+  }
+
+  footer article {
+    margin: 50px 0;
+    text-align: center;
+  }
+
+  footer form {
+    order: -1;
+  }
+}
+
+/* Début card */
+/* Code CSS pour les cartes */
+
+.imgc {
+  display: flex; /* Utiliser Flexbox */
+  flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne si nécessaire */
+  justify-content: space-around; /* Répartir l'espace disponible autour des éléments */
+  margin: 0 auto; /* Centrer horizontalement */
+  max-width: 1200px; /* Limiter la largeur maximale */
+}
+
+.card-hover {
+  width: 360px;
+  height: 500px;
+  margin: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+  border-radius: 80px; /* Arrondir les bords */
+}
+
+.card-hover:has(.card-hover__link:hover) .card-hover__extra {
+  transform: translateY(0);
+  transition: transform 0.35s;
+}
+
+.card-hover:hover .card-hover__content {
+  background-color: #ffca56;
+  bottom: 100%;
+  transform: translateY(100%);
+  padding: 50px 60px;
+  transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+}
+
+.card-hover:hover .card-hover__link {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition: all 0.3s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+}
+
+.card-hover:hover img {
+  transform: scale(1);
+  transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+}
+
+.card-hover__content {
+  width: 100%;
+  text-align: center;
+  background-color: #fac042;
+  padding: 0 60px 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(0);
+  transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+  will-change: bottom, background-color, transform, padding;
+  z-index: 1;
+}
+
+.card-hover__content::before,
+.card-hover__content::after {
+  content: "";
+  width: 100%;
+  height: 120px;
+  background-color: inherit;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+}
+
+.card-hover__content::before {
+  top: -80px;
+  -webkit-clip-path: ellipse(60% 80px at bottom center);
+  clip-path: ellipse(60% 80px at bottom center);
+}
+
+.card-hover__content::after {
+  bottom: -80px;
+  -webkit-clip-path: ellipse(60% 80px at top center);
+  clip-path: ellipse(60% 80px at top center);
+}
+
+.card-hover__title {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+.card-hover__title span {
+  color: #f5f3e2;
+}
+
+.card-hover__text {
+  font-size: 0.75rem;
+}
+
+.card-hover__link {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-decoration: none;
+  color: #f5f3e2;
+  opacity: 0;
+  padding: 10px;
+  transition: all 0.35s;
+}
+
+.card-hover__link:hover svg {
+  transform: translateX(4px);
+}
+
+.card-hover__link svg {
+  width: 18px;
+  margin-left: 4px;
+  transition: transform 0.3s;
+}
+
+.card-hover__extra {
+  height: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #f5f3e2;
+  padding: 80px;
+  bottom: 0;
+  z-index: 0;
+  color: #000;
+  transform: translateY(100%);
+  will-change: transform;
+  transition: transform 0.35s;
+}
+
+.card-hover__extra span {
+  color: #fac042;
+}
+
+.card-hover img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  z-index: -1;
+  transform: scale(1.2);
+  transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+}
+
+/* Fin card */
+
+/* STYLE MOBILE */
+@media screen and (max-width: 767px) {
+  #concept h2::before {
+    left: 45px;
+  }
+  #concept h2 {
+    margin-bottom: 90px;
+  }
+  #concept article {
+    padding: 0 20px 20px 85px;
+  }
+}
+
+#concept {
+  padding: 150px 15px 50px;
+}
+
+#concept h2 {
+  color: black;
+  line-height: 38px;
+  padding-left: 75%;
+  margin-top: -95px;
+}
+
+#concept h2::before {
+  content: "";
+  height: 10vw;
+  width: 10vw;
+  position: absolute;
+  z-index: -1;
+  top: -7.5vw;
+  left: 3.5vw;
+  background-image: url(../img/logobeede.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2);
+}
+
+#concept article {
+  padding: 0 20px 20px 45px;
+}
+#concept article h3 {
+  margin-bottom: 20px;
+}
+#concept article p {
+  padding-left: 5px;
+}
+#concept article img {
+  float: left;
+  margin: -12px 15px 0 -45px;
+  height: 35px;
+}
+
+.br {
+  font-family: "Bright Retro", cursive;
+}
+
+.tt {
+  font-family: "TT Commons Pro", sans-serif;
+}
+
+#produits.shadow {
+  border-radius: 40px;
+  padding: 50px 0 30px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+#produits ul li {
+  margin-bottom: 30px;
+}
+#produits h2 {
+  text-align: center;
+  color: #fac042;
+}
+#produits img {
+  width: 50%;
+  margin-bottom: 15px;
+}
+#produits span {
+  font-size: 15px;
+}
+
+#produits {
+  width: 90%;
+  margin: auto;
+}
+#produits li:nth-of-type(2) {
+  margin: 30px 0;
+}
+
+.row {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.col-md-4 {
+  width: 33.33%;
+}
+
+.col-sm-12 {
+  flex-grow: 1;
+}
+
+/* Styles supplémentaires pour les éléments */
+.row img {
+  max-width: 100%;
+  height: auto;
+}
+
+.row h3 {
+  margin-top: 10px;
+}
+
+.mt {
+  margin-top: 50px;
+  margin-bottom: 150px;
+  height: 500px;
+}
+
+.bleu {
+  color: #092a43;
+}
+
+.bgc {
+  background-color: #f5f3e2;
+}
+
+.col-md-8 {
+  border-radius: 10px; /* Arrondit les coins de la div */
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3); /* Ajoute une ombre portée */
+  padding: 30px; /* Ajoute un peu d'espace intérieur pour séparer le contenu de la bordure */
+}
+
+.col-md-8 p {
+  border: 1px solid #ccc; /* Ajoute une bordure solide de 1px */
+  border-radius: 5px; /* Arrondit les coins du cadre */
+  padding: 10px; /* Ajoute un peu d'espace à l'intérieur du cadre */
+}
+
+.blanc {
+  color: white;
+}
+
+.taille {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.jaune {
+  color: #fac042;
+}
+
+.center-images {
+  margin-left: 200px;
+}
+
+/*-----------------------------------------------------------*/
