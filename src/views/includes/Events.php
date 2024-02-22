@@ -9,16 +9,18 @@
 
 <body>
 
-    <form action="" method="GET">
+<form action="" method="GET">
+    <div class="search_bar">
         <input type="text" name="search" placeholder="Rechercher un événement">
         <button type="submit">Rechercher</button>
-    </form>
-
+    </div>
+</form>
     <?php
     global $pdo;
 
-    // Définition du nombre d'événements par page
-    $eventsPerPage = 10;
+// Définition du nombre d'événements par page
+$eventsPerPage = 5;
+
 
     // Récupération du numéro de page à partir de l'URL, par défaut à 1 si non spécifié
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -86,10 +88,12 @@
     // Ajout des liens vers la page précédente et suivante avec le terme de recherche conservé dans l'URL
     $prevPage = $page > 1 ? $page - 1 : 1;
     $nextPage = $page + 1;
-
-    echo "<a href='?search=$searchTerm&page=$prevPage'>Page précédente</a>";
-    echo "<a href='?search=$searchTerm&page=$nextPage'>Page suivante</a>";
-    ?>
+echo "<div class='alignement_bouton'>
+        <a class='bouton_page_prec' href='?search=$searchTerm&page=$prevPage'><-- Page précédente</a>
+        <span>Page $page</span>
+        <a class='bouton_page_suiv' href='?search=$searchTerm&page=$nextPage'>Page suivante --></a>
+     </div>";
+?>
 </body>
 
 </html>
