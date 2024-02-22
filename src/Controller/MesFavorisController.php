@@ -6,6 +6,10 @@ class MesFavorisController
 {
     public function mesfavoris()
     {
+        if ($_SESSION['role'] === 0) {
+            header("Location: /error403");
+            exit;
+        }
         $viewPath = __DIR__ . '/../views/includes/MesFavoris.php';
         $title = "MesFavoris";
         $style = "mesfavoris.css";
