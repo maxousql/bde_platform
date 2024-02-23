@@ -67,7 +67,7 @@
     foreach ($data as $row) {
         // Votre code pour afficher chaque événement
         $imageData = base64_encode($row['photo_Event']);
-        $src = 'data:image/jpeg;base64,' . $imageData;
+        $src = 'data:image/jpeg;base64,' . $imageData;  
         if (isset($_SESSION['email'])) {
             $btnReservationFavoris = '<a class="a_event_reserver" href="reservation?id_event=' . $row["id_event"] . '">Réserver</a>
                     <a class="a_event_reserver" href="favoris?id_event=' . $row["id_event"] . '">Favoris</a>';
