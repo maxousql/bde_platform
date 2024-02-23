@@ -39,8 +39,6 @@ class UpdateEventModel
         $deleteEvent_query_run = $pdo->prepare($deleteEvent_query);
         $deleteEvent_query_run->execute();
 
-
-
         header("Location: /admin_events");
         exit();
     }

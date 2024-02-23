@@ -8,7 +8,7 @@ class AdminEventController
 {
     public function process_deleteEvent()
     {
-        if ($_SESSION['role'] != 2) {
+        if ($_SESSION['role'] === 1) {
             header("Location: /error403");
             exit;
         }

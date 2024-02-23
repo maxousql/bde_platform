@@ -143,7 +143,7 @@ class AdminUserController
 
     public function admin_events()
     {
-        if ($_SESSION['role'] != 2) {
+        if ($_SESSION['role'] === 1) {
             header("Location: /error403");
             exit;
         }
