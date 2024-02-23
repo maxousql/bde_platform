@@ -13,6 +13,11 @@
         <div class="search_bar">
             <input type="text" name="search" placeholder="Rechercher un événement">
             <button type="submit">Rechercher</button>
+            <select name="filter">
+                <option value="date">Date</option>
+                <option value="alphabetical">Ordre alphabétique</option>
+            </select>
+            
         </div>
     </form>
     <?php
@@ -20,7 +25,6 @@
 
     // Définition du nombre d'événements par page
     $eventsPerPage = 5;
-
 
     // Récupération du numéro de page à partir de l'URL, par défaut à 1 si non spécifié
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -36,11 +40,27 @@
         $searchTerm = $_GET['search'];
     }
 
-    // Requête SQL pour récupérer les événements correspondant au terme de recherche et paginés
+    // Initialisation du filtre par défaut à la date
+    $filter = 'date';
+
+    // Vérifie si un filtre a été sélectionné
+    if (isset($_GET['filter'])) {
+        $filter = $_GET['filter'];
+    }
+
+    // Requête SQL pour récupérer les événements correspondant au terme de recherche, triés selon le filtre et paginés
     $sql = "SELECT * FROM event 
         INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie
-        WHERE nom_event LIKE '%$searchTerm%'
-        LIMIT $eventsPerPage OFFSET $offset";
+        WHERE nom_event LIKE '%$searchTerm%'";
+
+    // Ajout du tri selon le filtre sélectionné
+    if ($filter == 'date') {
+        $sql .= " ORDER BY date_event";
+    } else if ($filter == 'alphabetical') {
+        $sql .= " ORDER BY nom_event";
+    }
+
+    $sql .= " LIMIT $eventsPerPage OFFSET $offset";
 
     $data = $pdo->query($sql)->fetchAll();
 
@@ -83,16 +103,16 @@
             </div>';
     }
 
-    // Ajout des liens vers la page précédente et suivante avec le terme de recherche conservé dans l'URL
+    // Ajout des liens vers la page précédente et suivante avec le terme de recherche et le filtre conservés dans l'URL
     $prevPage = $page > 1 ? $page - 1 : 1;
     $nextPage = $page + 1;
     echo "<div class='alignement_bouton'>
-        <a class='bouton_page_prec' href='?search=$searchTerm&page=$prevPage'><-- Page précédente</a>
+        <a class='bouton_page_prec' href='?search=$searchTerm&filter=$filter&page=$prevPage'><-- Page précédente</a>
         <span>Page $page</span>
-        <a class='bouton_page_suiv' href='?search=$searchTerm&page=$nextPage'>Page suivante --></a>
+        <a class='bouton_page_suiv' href='?search=$searchTerm&filter=$filter&page=$nextPage'>Page suivante --></a>
      </div>";
     ?>
-    
+
 
 </main>
 </body>
