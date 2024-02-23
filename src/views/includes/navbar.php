@@ -76,7 +76,7 @@
                         <a href="/mesfavoris" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-1">Vos favoris</a>
                         <a href="/process_logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-2 confirmLogout">Se déconnecter</a>
+                            id="user-menu-item-2">Se déconnecter</a>
                     </div>';
                     } else {
                         echo '<div>

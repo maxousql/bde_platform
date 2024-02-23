@@ -8,6 +8,14 @@ class AddEventController
 {
     public function addevent()
     {
+        if ($_SESSION['role'] === 0) {
+            header("Location: /error403");
+            exit;
+        }
+        if ($_SESSION['role'] === 1) {
+            header("Location: /error403");
+            exit;
+        }
         $viewPath = __DIR__ . '/../views/includes/add_events.php';
         $title = "AddEvent";
         $style = "addevent.css";
@@ -24,6 +32,14 @@ class AddEventController
     }
     public function process_addevent()
     {
+        if ($_SESSION['role'] === 0) {
+            header("Location: /error403");
+            exit;
+        }
+        if ($_SESSION['role'] === 1) {
+            header("Location: /error403");
+            exit;
+        }
         $addeventModel = new AddEventModel();
 
         $addeventModel->processaddevent();
