@@ -1,11 +1,12 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <h2 class="text-2xl font-bold mb-4">Liste des événements</h2>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             new DataTable('#example');
         });
     </script>
-    <a href="/addevent" class="bg-[#002D74] rounded-xl text-white py-2 p-2 mb-4 hover:scale-105 duration-300">Ajouter un événement</a>
+    <a href="/addevent" class="bg-[#002D74] rounded-xl text-white py-2 p-2 mb-4 hover:scale-105 duration-300">Ajouter un
+        événement</a>
     <h2 class="mb-4"></h2>
     <table id="example" class="display" style="width:100%">
         <thead>
@@ -53,7 +54,7 @@
                         ' . $row['nombre_de_participants'] . '
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="edit_event?id_event=' . $row["id_event"] . '" name="editEvent" id="editEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                        <a href="process_editEvent?id_event=' . $row["id_event"] . '" name="editEvent" id="editEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                     </td>
                     <td class="border px-4 py-2">
                         <a href="delete_event?id_event=' . $row["id_event"] . '" name="deleteEvent" id="deleteEvent" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Supprimer</a>

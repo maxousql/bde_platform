@@ -4,23 +4,42 @@ namespace App\Models;
 
 class UpdateEventModel
 {
-    public function processUpdateEvent()
+    public function processEditEvent()
     {
         global $pdo;
 
-        $id_billet = $_GET['id_billet'];
+        if (isset($_GET['id_event'])) {
+            $id_event = $_GET['id_event'];
+            $getEventQuery = $pdo->prepare("SELECT * FROM event 
+            INNER JOIN categorie_event ON event.id_categorie = categorie_event.id_categorie
+            WHERE id_event=:id_event ");
+            $getEventQuery->bindParam(':id_event', $id_event);
+            $getEventQuery->execute();
+            $eventData = $getEventQuery->fetch();
+            $imageData = base64_encode($eventData['photo_Event']);
+            $src = 'data:image/jpeg;base64,' . $imageData;
+            $eventData['photo_Event'] = $src;
+        } else {
+            echo "ID de l'événement non spécifié.";
+        }
 
+        return $eventData;
+    }
+    public function processUpdateEvent($eventData)
+    {
+        global $pdo;
 
-        $stmt = $pdo->prepare("SELECT id_event FROM billet WHERE id_billet = ?");
-        $stmt->execute([$id_billet]);
-        $event_id = $stmt->fetchColumn();
-
-        $pdo->query("DELETE FROM billet WHERE id_billet = $id_billet");
-
-        $pdo->query("UPDATE event SET nombre_de_participants = nombre_de_participants - 1 WHERE id_event = $event_id");
-
-        header("Location: mesreservation");
-        exit();
+        $updateEvent_query = "UPDATE event SET nom_event = :nom_event, description_event = :description_event, adresse = :adresse, id_categorie = :id_categorie, prix = :prix, date_event = :date_event WHERE id_event = :id_event";
+        $updateEvent_query_run = $pdo->prepare($updateEvent_query);
+        $updateEvent_query_run->execute([
+            ":nom_event" => $eventData['nom'],
+            ":description_event" => $eventData['description'],
+            ":adresse" => $eventData['adresse'],
+            ":id_categorie" => $eventData['id_categorie'],
+            ":prix" => $eventData['prix'],
+            ":date_event" => $eventData['date'],
+            ":id_event" => $eventData['id_event']
+        ]);
     }
 
     public function processDeleteEvent($idEvent)

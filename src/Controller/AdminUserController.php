@@ -162,34 +162,6 @@ class AdminUserController
         }
     }
 
-    public function edit_event()
-    {
-        if ($_SESSION['role'] != 2) {
-            header("Location: /error403");
-            exit;
-        }
-        $viewPath = __DIR__ . '/../views/includes/EditEvents.php';
-        $title = "Modification événements";
-        $style = "editUser.css";
-        $currentPage = "admin_events";
-        if (isset($_SESSION['status_update_user']) || $_SESSION['status_update_user'] === 1) {
-            unset($_SESSION['status_update_user']);
-            $validUpdate = 1;
-        } elseif (isset($_SESSION['status_update_user']) || $_SESSION['status_update_user'] === 0) {
-            unset($_SESSION['status_update_user']);
-            $validUpdate = 2;
-        }
-
-        if (file_exists($viewPath)) {
-            ob_start();
-            include $viewPath;
-            $content = ob_get_clean();
-            include __DIR__ . '/../views/layout.php';
-        } else {
-            return "Erreur: Vue introuvable";
-        }
-    }
-
     public function process_deleteUser()
     {
         if ($_SESSION['role'] != 2) {

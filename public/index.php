@@ -134,7 +134,13 @@ $router
         new Route('/admin_events', 'admin_events', 'GET', AdminUserController::class, 'admin_events')
     )
     ->addRoute(
-        new Route('/edit_event', 'edit_event', 'GET', AdminUserController::class, 'edit_event')
+        new Route('/edit_event', 'edit_event', 'GET', AdminEventController::class, 'edit_event')
+    )
+    ->addRoute(
+        new Route('/process_editEvent', 'process_editEvent', 'GET', AdminEventController::class, 'process_editEvent')
+    )
+    ->addRoute(
+        new Route('/processUpdateEvent', 'processUpdateEvent', 'POST', AdminEventController::class, 'processUpdateEvent')
     )
     ->addRoute(
         new Route('/profile', 'profile', 'GET', ProfileController::class, 'profile')
