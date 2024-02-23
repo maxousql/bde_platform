@@ -92,7 +92,7 @@ main #rejoindre {
       black 45%
     ),
     url(../img/join.jpg);
-  height: 550px;
+  height: 580px;
   background-size: cover;
   background-position: center 35%;
   color: #f5f3e2;
@@ -641,10 +641,35 @@ footer ul li h3 {
   margin-top: 10px;
 }
 
+#produits ul {
+  display: flex;
+  justify-content: space-around; /* Pour espacer les éléments de manière égale */
+}
+
+#produits ul li {
+  display: flex;
+  flex-direction: column; /* Aligner les éléments verticalement */
+  align-items: center; /* Centrer les éléments horizontalement */
+  text-align: center; /* Centrer le texte horizontalement */
+  margin-bottom: 30px;
+}
+
+#produits img {
+  width: 50%;
+  margin-bottom: 15px;
+}
+
 .mt {
   margin-top: 50px;
-  margin-bottom: 150px;
   height: 500px;
+}
+
+.mb {
+  margin-bottom: 150px;
+}
+
+.mb2 {
+  margin-bottom: 15px;
 }
 
 .bleu {
@@ -676,12 +701,24 @@ footer ul li h3 {
   margin-bottom: 20px;
 }
 
+.taille2 {
+  font-size: 40px;
+}
+
+.taille3 {
+  font-size: 20px;
+}
+
 .jaune {
   color: #fac042;
 }
 
-.center-images {
-  margin-left: 200px;
+.textcentre {
+  margin-left: 30px;
+}
+
+.mt2 {
+  margin-top: 50px;
 }
 
 /*-----------------------------------------------------------*/
