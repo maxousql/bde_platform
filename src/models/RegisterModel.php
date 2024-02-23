@@ -12,7 +12,7 @@ class RegisterModel
     {
         $mail = new PHPMailer(true);
 
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->SMTPAuth = true;
 
@@ -36,7 +36,52 @@ class RegisterModel
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
-        echo 'Message has been sent';
+    }
+
+    public function sendemail_verify_admin($user_info)
+    {
+        global $pdo;
+
+        $getAllAdmin_query = "SELECT email FROM utilisateur WHERE id_role=2";
+        $getAllAdmin_query_run = $pdo->prepare($getAllAdmin_query);
+        $getAllAdmin_query_run->execute();
+
+        $mail = new PHPMailer(true);
+
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Username = 'mlaiyiolaitong@gmail.com';
+        $mail->Password = 'pigv gjfs cecj zlfw';
+
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+
+        //Recipients
+        $mail->setFrom('mlaiyiolaitong@gmail.com', 'BEEDE Sciences-U');
+        $mail->Subject = 'Nouvel utilisateur vérifié : BEEDE Sciences-U';
+
+        //Content
+        $mail->isHTML(true);
+
+        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        $admin_emails = array();
+
+        while ($row = $getAllAdmin_query_run->fetch($pdo::FETCH_ASSOC)) {
+            $admin_emails[] = $row['email'];
+        }
+
+        $message = 'Nouvel utilisateur : ID : ' . $user_info['id_utilisateur'] . ' Nom : ' . $user_info['nom'] . ' Prénom : ' . $user_info['prenom'] . ' Email : ' . $user_info['email'] . ' ID_Role : ' . $user_info['id_role'] . ' ID_Ecole : ' . $user_info['id_ecole'] . ' ID_Promotion : ' . $user_info['id_promotion'] . '';
+
+        foreach ($admin_emails as $email) {
+            $mail->addAddress($email);
+            $mail->Body = $message;
+            $mail->send();
+
+        }
     }
     public function processRegister($userData)
     {
@@ -63,8 +108,7 @@ class RegisterModel
             if ($query_run) {
                 $this->sendemail_verify($name, $email, $verify_token);
                 $_SESSION['status'] = "Registration Successfull! Please verify your Email Address";
-                header("Locatin: register");
-                var_dump($_SESSION['status']);
+                header("Locatin: /login");
             } else {
                 $_SESSION['status'] = "Registration Failed";
                 echo "Registration Failed!";
@@ -92,6 +136,15 @@ class RegisterModel
             $valid_token_run = $pdo->prepare($valid_token);
             $valid_token_run->bindParam(':token', $token);
             $valid_token_run->execute();
+
+            $getUser_query = "SELECT * FROM utilisateur WHERE verify_token=:token LIMIT 1";
+            $getUser_query_run = $pdo->prepare($getUser_query);
+            $getUser_query_run->bindParam(':token', $token);
+            $getUser_query_run->execute();
+
+            $user_info = $getUser_query_run->fetch($pdo::FETCH_ASSOC);
+
+            $this->sendemail_verify_admin($user_info);
         }
     }
 }
