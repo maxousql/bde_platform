@@ -19,6 +19,7 @@ use App\Controller\AssetController;
 use App\Controller\ReservationController;
 use App\Controller\AddEventController;
 use App\Controller\AdminEventController;
+use App\Controller\NotifMailController;
 use App\Routing\Exception\RouteNotFoundException;
 use App\Routing\Route;
 use App\Routing\Router;
@@ -143,6 +144,9 @@ $router
     )
     ->addRoute(
         new Route('/delete_event', 'process_deleteEvent', 'GET', AdminEventController::class, 'process_deleteEvent')
+    )
+    ->addRoute(
+        new Route('/notif_j1', 'notif_j1', 'GET', NotifMailController::class, 'notif_j1')
     );
 
 [
