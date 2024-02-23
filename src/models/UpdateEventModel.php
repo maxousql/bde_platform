@@ -27,13 +27,19 @@ class UpdateEventModel
     {
         global $pdo;
 
-        $deleteEvent_query = "DELETE FROM event WHERE id_event = $idEvent";
-        $deleteEvent_query_run = $pdo->prepare($deleteEvent_query);
-        $deleteEvent_query_run->execute();
+        $deleteFavoris_query = "DELETE FROM favoris WHERE id_event = $idEvent";
+        $deleteFavoris_query_run = $pdo->prepare($deleteFavoris_query);
+        $deleteFavoris_query_run->execute();
 
         $deleteBillet_query = "DELETE FROM billet WHERE id_event = $idEvent";
         $deleteBillet_query_run = $pdo->prepare($deleteBillet_query);
         $deleteBillet_query_run->execute();
+
+        $deleteEvent_query = "DELETE FROM event WHERE id_event = $idEvent";
+        $deleteEvent_query_run = $pdo->prepare($deleteEvent_query);
+        $deleteEvent_query_run->execute();
+
+
 
         header("Location: /admin_events");
         exit();
