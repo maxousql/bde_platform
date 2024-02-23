@@ -8,20 +8,20 @@ $data = $pdo->query("SELECT id_categorie, nom_categorie FROM categorie_event")->
         <h1 class="text-4xl font-bold">Ajouter un évenement</h1>
     </div>
     <div class="mt-8">
-        <form action="/process_addevent" method="POST" class="flex flex-col items-center" style="width: 500px" ;>
+        <form action="/process_addevent" method="POST" class="flex flex-col items-center" style="width: 500px" enctype="multipart/form-data">
             <input type="text" style="width: 500px" name="nom_event" placeholder="Nom de l'évenement" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
             <textarea name="description_event" placeholder="Description de l'évenement" rows="5" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4 resize-none w-full" required></textarea>
             <input style="width: 500px" type="text" name="adresse" placeholder="Adresse" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
             <div style="width: 500px" class="bg-white p7 rounded w-9/12 mx-auto" style="width: 500px">
                 <div x-data="dataFileDnD()" class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                     <div x-ref="dnd" class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
-                        <input name="photo_Event" accept="*" type="file" multiple class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer" @change="addFiles($event)" @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');" @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" title="" />
+                        <input name="photo_Event" accept="image/*" type="file" class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer" @change="addFiles($event)" @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');" @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" title="" />
 
                         <div class="flex flex-col items-center justify-center py-10 text-center">
                             <svg class="w-6 h-6 mr-1 text-current-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
-                            <p class="m-0">Veuiller sélectionner 1 seul photo</p>
+                            <p class="m-0">Veuillez sélectionner 1 seule photo</p>
                         </div>
                     </div>
 
@@ -124,13 +124,13 @@ $data = $pdo->query("SELECT id_categorie, nom_categorie FROM categorie_event")->
                             return blobUrl;
                         },
                         addFiles(e) {
-                            const files = createFileList([...this.files], [...e.target.files]);
-                            this.files = files;
-                            this.form.formData.files = [...files];
+                            const filesArray = Array.from(e.target.files);
+                            this.files = filesArray;
                         }
                     };
                 }
             </script>
+
             <div style="padding-top: 20px; ">
                 <input type="number" step="0.01" name="prix" placeholder="Prix" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />
                 <input type="date" name="date_evenement" class="py-2 px-4 bg-gray-800 text-white rounded-md focus:outline-none mb-4" required />

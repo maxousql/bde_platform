@@ -13,11 +13,6 @@ $query->execute();
 $user = $query->fetch();
 ?>
 <section id="concept" class="container">
-    <div class="row">
-        <div class="col-md-4 col-sm-12">
-            <h2></h2>
-        </div>
-
         <div class="col-md-8 col-sm-12 row">
             <article class="col-md-6 col-sm-12">
                 <img src="img/utilisateur.png">
@@ -38,9 +33,6 @@ $user = $query->fetch();
                 <img src="img/utilisateur.png">
                 <h3>Ecole/Promotion :</h3>
                 <p><?php echo $user['nom_ecole']; ?> / <?php echo $user['nom_promotion']; ?></p>
-            </article>
-            <article class="col-md-12 col-sm-12 d-flex align-items-center justify-content-center">
-                <a href="#" class="btnb blanc">Modifier</a>
             </article>
         </div>
     </div>
