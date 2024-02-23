@@ -1,7 +1,7 @@
    <header>
        <div>
            <h1 class="tt bleu">BEEDE</h1>
-           <h2 class="tt">- BDE du campus sciences-u Lyon ! Bienvenue dans la ruche !! BZZ BZZ -</h2>
+           <h2 class="tt">- BDE du campus sciences-u Lyon ! Bienvenue dans la ruche !! BZZ BZZ-</h2>
        </div>
    </header>
 
@@ -20,9 +20,9 @@
        <!-- fin section #programs -->
 
        <section id="objectives">
-           <div class="container">
-               <h2 class="br bleu">Nos meilleures sorties :</h2>
-               <p class="br bleu">Ici vous retrouverez nos actions en vedette:</p>
+           <div class="container mt2">
+               <h2 class="br bleu taille2">Nos meilleures sorties :</h2>
+               <p class="br bleu taille3">Ici vous retrouverez nos actions en vedette:</p>
            </div>
 
            <!-- fin section #objectives -->
@@ -44,49 +44,45 @@
                        </a>
                    </div>
                    <div class="card-hover__extra">
-                       <h4>Rendez-vous le 9 <span>now</span> and get <span>40%</span> discount!</h4>
+                       <h4>Rendez-vous le <span>9</span> et obtenez <span>40%</span> de réduction!</h4>
                    </div>
                    <img src="img/cartes.jpg" alt="">
                </div>
                <div class="card-hover">
                    <div class="card-hover__content">
                        <h3 class="card-hover__title">
-                           Make your <span>choice</span> right now!
+                           Tournoi de <span>football</span> au Le Five OL-Lyon!
                        </h3>
-                       <p class="card-hover__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia
-                           quisquam
-                           doloremque nostrum laboriosam, blanditiis libero corporis nulla a aut?</p>
+                       <p class="card-hover__text">Rejoignez-nous au 2 Avenue Simone Veil, 69150 Décines-Charpieu pour un tournoi de foot à 5!</p>
                        <a href="/events" class="card-hover__link">
-                           <span>Learn How</span>
+                           <span>S'incrire !</span>
                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                            </svg>
                        </a>
                    </div>
                    <div class="card-hover__extra">
-                       <h4>Learn <span>now</span> and get <span>40%</span> discount!</h4>
+                       <h4>Inscrivez vous avec votre équipe de <span>5 joueurs</span> pour y participer !</h4>
                    </div>
-                   <img src="img/cartes.jpg" alt="">
+                   <img src="img/foot.jpg" alt="">
                </div>
                <div class="card-hover">
                    <div class="card-hover__content">
                        <h3 class="card-hover__title">
-                           Make your <span>choice</span> right now!
+                           Tournoi <span>multigaming</span> au campus!
                        </h3>
-                       <p class="card-hover__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia
-                           quisquam
-                           doloremque nostrum laboriosam, blanditiis libero corporis nulla a aut?</p>
+                       <p class="card-hover__text">Rejoignez-nous pour un tournoi endiablé sur 3 jeux différents: LoL, Valorant et Rocket League!</p>
                        <a href="/events" class="card-hover__link">
-                           <span>Learn How</span>
+                           <span>S'inscire !</span>
                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                            </svg>
                        </a>
                    </div>
                    <div class="card-hover__extra">
-                       <h4>Learn <span>now</span> and get <span>40%</span> discount!</h4>
+                       <h4>Inscrivez vous avec votre équipe de <span>5 joueurs</span> pour y participer !</h4>
                    </div>
-                   <img src="img/cartes.jpg" alt="">
+                   <img src="img/gaming.jpg" alt="">
                </div>
            </div>
            </div>
@@ -94,7 +90,7 @@
        <!-- Fin card -->
 
        <!-- debut section rejoindre -->
-       <div class="mt">
+       <div class="mt mb">
            <section id="rejoindre">
                <div class="container">
                    <article>
@@ -111,24 +107,21 @@
        </div>
        <!-- fin section rejoindre -->
 
-       <div class="mt">
+       <div class="mt mb2">
            <section id="produits" class="container shadow">
-               <h2 class="br">Mieux nous connaître</h2>
-               <ul class="row center-images">
+               <h2 class="br taille3">Mieux nous connaître</h2>
+               <ul class="row">
                    <li class="col-md-4 col-sm-12">
                        <img src="img/homme.png" alt="">
-                       <h3>Maxime</h3>
-                       <span class="rockwell">Personne 1</span>
+                       <h3>Maxime LAI YIO LAI TONG</h3>
                    </li>
                    <li class="col-md-4 col-sm-12">
                        <img src="img/femme.png" alt="">
                        <h3>Manon Plazza</h3>
-                       <span class="rockwell">Personne 2</span>
                    </li>
                    <li class="col-md-4 col-sm-12">
                        <img src="img/homme2.png" alt="">
                        <h3>Matéo Grand</h3>
-                       <span class="rockwell">Personne 3</span>
                    </li>
                </ul>
            </section>
